@@ -11,7 +11,6 @@ export default class Home extends Component {
 	
 	getPosts() {
 		Meteor.call(POST.FIND, (err, results) => {
-			console.log(results);
 			this.setState({ loading : false, posts : results.posts })
 		})
 	}
