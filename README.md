@@ -27,11 +27,10 @@ Temporary Project, might be deleted soon.
 - Can update Post, only by owner
 - Can comment for each post
 - Can delete Comment as Post Owner or Comment Owner
-
+- Can delete Post, only by owner
 
 ### Todos
 
-- Ability delete Post, only by owner
 - Make a pagination for post list
 - Reactive comments
 - Style all pages with material design
