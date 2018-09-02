@@ -17,7 +17,9 @@ const error = {
 	COMMENT: {
 		ID_UNSPECIFIED: 'Comment Id not Specified',
 		NOT_FOUND: 'Comment does not exist',
-		CANNOT_EDIT: 'Cannot edit this Comment. You must be an Administrator, or an Owner of this Comment, or an Owner of the Post'
+		CANNOT_EDIT: 'Cannot edit this Comment. You must be an Administrator, or an Owner of this Comment.',
+		CANNOT_DELETE: 'Cannot delete this Comment. You must be an Administrator, or an Owner of this Comment, or an Owner of the Post',
+		CANNOT_DELETE_MANY: 'Cannot delete Comments associated to this Post. You must be an Administrator, or an Owner of the Post'
 	},
 	
 	// update document
