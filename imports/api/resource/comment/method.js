@@ -2,12 +2,6 @@ import COMMENT from '/imports/constant/comment';
 import Security from '/imports/api/security';
 import CommentService from '/imports/api/resource/comment/service';
 
-const createCommentTag = COMMENT.CREATE;
-const findCommentsTag = COMMENT.FIND;
-const findSingleCommentTag = COMMENT.FIND_ONE;
-const updateSingleCommentTag = COMMENT.UPDATE_ONE;
-const deleteSingleCommentTag = COMMENT.DELETE_ONE;
-
 Meteor
 	.methods(
 		{
@@ -17,7 +11,7 @@ Meteor
 			 *   Description'}
 			 * @return {string} The Unique Id of the Comment created. Ex, ud7dCXssadas8ysn
 			 */
-			createCommentTag(comment) {
+			[COMMENT.CREATE](comment) {
 				Security.isLoggedIn(this.userId);
 				return CommentService.create(comment);
 			},
@@ -30,7 +24,7 @@ Meteor
 			 *
 			 * Example { comments: [...someComments], meta: { page: 2, count: 20} }
 			 */
-			findCommentsTag(page, count) {
+			[COMMENT.FIND] (page, count) {
 				if ( ! page ) page = DEFAULT_CONSTANT.PAGE_NUMBER;
 				if ( ! count ) count = DEFAULT_CONSTANT.PAGE_LIMIT;
 				return CommentService.get({ page, count })
@@ -41,7 +35,7 @@ Meteor
 			 * @param {string} commentId - Unique Comment Id
 			 * @return {object} A Comment Item. Ex, { _id, title, description, userId }
 			 */
-			findSingleCommentTag(commentId) {
+			[COMMENT.FIND_ONE] (commentId) {
 				return CommentService.getById(commentId)
 			},
 			
@@ -51,7 +45,7 @@ Meteor
 			 * @param {object} updateDocument - Details of parameters to update the existing Comment. Ex, {title, description}
 			 * @return {object} Updated Comment Object if updated, otherwise unupdated Comment if no change was made
 			 */
-			updateSingleCommentTag(commentId, updateDocument) {
+			[COMMENT.UPDATE_ONE] (commentId, updateDocument) {
 				Security.isLoggedIn(this.userId);
 				return CommentService.updateByID(this.userId, commentId, updateDocument);
 			},
@@ -60,7 +54,7 @@ Meteor
 			 * RPC Call to delete a single Comment By Id
 			 * @param {string} commentId - Unique Comment Id, Id of Comment to be updated.
 			 */
-			deleteSingleCommentTag(commentId) {
+			[COMMENT.DELETE_ONE](commentId) {
 				Security.isLoggedIn(this.userId);
 				return CommentService.deleteByID(this.userId, commentId);
 			}
