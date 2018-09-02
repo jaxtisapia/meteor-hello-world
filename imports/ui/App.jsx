@@ -1,13 +1,8 @@
-import React from 'react';
-
-export default ({main, routeProps}) => {
-	// main represents the component to render passed from the router
-	// route props represent the properties that it receives from the router
-	
-	// where we do createElement, that's where your components will get rendered.
-	return (
-		<div id="app">
-			{React.createElement(main, routeProps)}
-		</div>
-	)
-}
+// import React from 'react';
+// import Router from '/imports/ui/Router';
+// import { BrowserRouter } from 'react-router-dom';
+//
+// export default App = props =>
+// 	<BrowserRouter>
+// 		<Router />
+// 	</BrowserRouter>;
