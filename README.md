@@ -25,14 +25,14 @@ Temporary Project, might be deleted soon.
 - Can create Post, only when logged in
 - Can read post, even as a visitor
 - Can update Post, only by owner
+- Can comment for each post
+- Can delete Comment as Post Owner or Comment Owner
 
 
 ### Todos
 
 - Ability delete Post, only by owner
 - Make a pagination for post list
-- Ability to comment for each post
-- Ability to delete Comment as Post Owner or Comment Owner
 - Reactive comments
 - Style all pages with material design
 
