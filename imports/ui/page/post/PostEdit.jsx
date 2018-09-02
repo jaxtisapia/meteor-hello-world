@@ -30,7 +30,7 @@ export default class PostEdit extends Component {
 		else return <div>
 			<AutoForm model={ this.state.post } schema={ Schema } onSubmit={ data => {
 				
-				Meteor.call(POST.UPDATE_ONE, this.props._id, data, function(err, res) {
+				Meteor.call(POST.UPDATE_ONE, this.props._id, data, function(err, result) {
 					
 					if ( ! err ) route.go('/posts');
 					
