@@ -85,7 +85,7 @@ class PostService {
 		let post = Post.findOne({ _id : postId, userId });
 		
 		if ( ! post ) throw new Meteor.Error(ERRORS.POST.NOT_FOUND);
-		if ( post.userId !== this.userId ) throw new Meteor.Error(ERRORS.POST.CANNOT_EDIT);
+		if ( post.userId !== userId ) throw new Meteor.Error(ERRORS.POST.CANNOT_DELETE);
 		
 		return Post.remove({ _id : postId });
 	};
