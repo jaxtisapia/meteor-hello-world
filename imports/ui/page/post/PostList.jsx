@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
 import POST from '/imports/constant/post'
 import route from '/imports/routing/router'
+import Post from '/imports/ui/component/Post';
+import React, { Component } from 'react';
 
 export default class PostList extends Component {
 	constructor() {
@@ -25,18 +26,7 @@ export default class PostList extends Component {
 				{
 					posts.map((post) => {
 						return (
-							<div key={ post._id }>
-								<p>Post id: { post._id } </p>
-								<p>Post title: { post.title }, Post Description: { post.description } </p>
-								<button onClick={ () => {
-									route.go('/posts/edit/' + post._id)
-								} }> Edit post
-								</button>
-								<button onClick={ () => {
-									route.go(`/posts/${post._id}/comments`)
-								} }> View Comments
-								</button>
-							</div>
+							<Post key={ post._id } post={ post }/>
 						)
 					}) }
 				<button onClick={ () => route.go('/posts/add') }>Create a new post</button>
