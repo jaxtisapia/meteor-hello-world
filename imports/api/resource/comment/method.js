@@ -37,7 +37,7 @@ Meteor
 			 * @param {string} commentId - Unique Comment Id
 			 * @return {object} A Comment Item. Ex, { _id, title, description, userId }
 			 */
-			[COMMENT.FIND_ONE](commentId) {
+			[COMMENT.FIND_ONE] (commentId) {
 				return CommentService.getByCommentId(commentId)
 			},
 			
