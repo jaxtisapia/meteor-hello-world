@@ -4,13 +4,19 @@ import ERRORS from '/imports/constant/error'
 
 class CommentService {
 	
+	/**
+	 * Create a new comment for a Post
+	 * @param {string} postId - Unique Post Id
+	 * @param {object} comment - Comment Document to be attached/linked to a Post
+	 * @return {string} Comment Id of the create Comment Document
+	 */
 	static create(postId, comment) {
 		
 		const post = PostService.getById(postId);
 		
 		if ( ! post ) throw new Meteor.Error(ERRORS.POST.NOT_FOUND);
 		
-		Comment.insert(comment)
+		return Comment.insert(comment)
 	}
 	
 	static updateByCommentId(userId, commentId, updateDocument) {
