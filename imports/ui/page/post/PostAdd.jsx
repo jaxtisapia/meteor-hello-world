@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import POST from '/imports/constant/post'
 import { AutoForm, AutoField, LongTextField, ErrorsField } from 'uniforms-unstyled';
 import SimpleSchema from 'simpl-schema';
+import route from '/imports/routing/router'
 
 export default class PostAdd extends Component {
 	
 	submit = (post) => {
-
 		Meteor.call(POST.CREATE, post, (err) => {
 
 			if ( err ) return alert(err.reason);
@@ -33,7 +33,7 @@ export default class PostAdd extends Component {
 					
 					<button type='submit'>Add post</button>
 					
-					{/*<button onClick={ () => this.props.history.push('/posts') }>Back to posts</button>*/}
+					<button onClick={ () => route.go('/posts') }>Back to posts</button>
 				
 				</AutoForm>
 			</div>

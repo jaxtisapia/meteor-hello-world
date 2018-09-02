@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import POST from '/imports/constant/post'
+import route from '/imports/routing/router'
 
 export default class PostList extends Component {
 	constructor() {
@@ -28,13 +29,13 @@ export default class PostList extends Component {
 								<p>Post id: {post._id} </p>
 								<p>Post title: {post.title}, Post Description: {post.description} </p>
 								<button onClick={() => {
-									history.push("/posts/edit/" + post._id)
+									route.go("/posts/edit/" + post._id)
 								}}> Edit post
 								</button>
 							</div>
 						)
 					})}
-				<button onClick={() => history.push('/posts/create')}>Create a new post</button>
+				<button onClick={() => route.go('/posts/add')}>Create a new post</button>
 			</div>
 		)
 	}

@@ -3,8 +3,7 @@ class Helper {
 	static enumify(label, object) {
 		
 		Object.keys(object).forEach((key) => {
-			const newValue = this._appendPrefix(label, object[key]);
-			object[key] = newValue
+			object[key] = this._appendPrefix(label, object[key])
 		});
 		
 		return object;

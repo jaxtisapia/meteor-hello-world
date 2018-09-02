@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 import { AutoForm, AutoField, ErrorsField, SubmitField } from 'uniforms-unstyled';
 import SimpleSchema from 'simpl-schema';
+import route from '/imports/routing/router';
 
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
-		
-		this.navigateToPosts = this.navigateToPosts.bind(this);
 	}
-	
-	navigateToPosts() { props.history.push('/posts')};
 	
 	handleLogin(data) {
 		
 		const { email, password } = data;
-		this.navigateToPosts();
 		
 		Meteor.loginWithPassword(email, password, (error) => {
-			if ( ! error ) this.navigateToPosts();
+			if ( ! error ) route.go('/posts');
 			else alert(error.reason);
 		})
 		
@@ -44,6 +40,7 @@ export default class Login extends Component {
 			</div>
 		)
 	}
+
 }
 
 const LoginSchema = new SimpleSchema(
