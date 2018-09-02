@@ -1,6 +1,18 @@
+import POST from '/imports/constant/post';
 import React, { Component } from 'react';
 
 export default class Post extends Component {
+	
+	
+	handleDeletePost(postId) {
+		const userId = Meteor.userId();
+		
+		Meteor.call(POST.DELETE_ONE, postId, (err, result) => {
+			console.log(err, result);
+			if ( err ) return alert(err.error);
+			alert('Post deleted!')
+		})
+	}
 	
 	render() {
 		
@@ -20,7 +32,7 @@ export default class Post extends Component {
 				</button>
 				
 				{ (isOwnerOfPost)
-					? <button onClick={ () => {} }>Delete Post</button>
+					? <button onClick={ () => this.handleDeletePost(post._id) }>Delete Post</button>
 					: null
 				}
 				
