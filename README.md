@@ -45,7 +45,13 @@ Temporary Project, might be deleted soon.
 - Clean organisation of styling elements
 
 - Write MORE Tests
- 
+ - Check all Access Controls to prevent unauthorized CRUD actions by wrong users. 
+ Example, If a user supplies a valid Id but different User Id, he can edit others'
+ post
+
+- On updating a document, Make it possible to edit just a single value, instead
+of forcing all values to be sent and updated
+
 - Do a test deploy, and test leak of secret environment variables
  
  # Credit
