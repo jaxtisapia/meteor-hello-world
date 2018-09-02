@@ -52,6 +52,8 @@ Temporary Project, might be deleted soon.
 - On updating a document, Make it possible to edit just a single value, instead
 of forcing all values to be sent and updated
 
+- Lint Project
+
 - Do a test deploy, and test leak of secret environment variables
  
  # Credit
