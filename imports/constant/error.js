@@ -10,7 +10,8 @@ const error = {
 	POST: {
 		ID_UNSPECIFIED: 'Post Id not Specified',
 		NOT_FOUND: 'Post does not exist',
-		CANNOT_EDIT: 'Cannot edit this Post. You must be an Administrator, or an Owner of this Post'
+		CANNOT_EDIT : 'Cannot edit this Post. You must be an Administrator, or an Owner of this Post',
+		CANNOT_DELETE : 'Cannot delete this Post. You must be an Administrator, or an Owner of the Post',
 	},
 	
 	// comment related errors
