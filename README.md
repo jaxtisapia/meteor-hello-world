@@ -44,6 +44,8 @@ Temporary Project, might be deleted soon.
 
 - Clean organisation of styling elements
 
+- Add a RedirectService at client side to process all redirects
+
 - Write MORE Tests
  - Check all Access Controls to prevent unauthorized CRUD actions by wrong users. 
  Example, If a user supplies a valid Id but different User Id, he can edit others'
