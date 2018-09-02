@@ -1,10 +1,11 @@
-import Helper from 'imports/services/helper';
+import Helper from '/imports/services/helper';
 
 const comment = {
 	FIND: 'find',
-	DELETE_BY_ID: 'delete_by_id',
+	FIND_ONE : 'find_one',
+	DELETE_ONE : 'delete_one',
+	UPDATE_ONE : 'update_one',
 	CREATE: 'create',
-	UPDATE: 'update',
 };
 
 export default Helper.enumify('comment', comment);
