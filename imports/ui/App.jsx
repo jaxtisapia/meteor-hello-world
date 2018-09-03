@@ -1,3 +1,4 @@
+import { UserResource } from '/imports/ui/util/service';
 import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 
@@ -8,7 +9,7 @@ const App = ({ main, routeProps, user }) => {
 	let loginMessage = null;
 	
 	function Logout() {
-		Meteor.logout();
+		UserResource.logout();
 	}
 	
 	if ( user ) {
@@ -41,12 +42,12 @@ const App = ({ main, routeProps, user }) => {
 			{ loginMessage }
 			
 			{ React.createElement(main, routeProps, user) }
-			
+		
 		</div>
 	)
 };
 
-export default withTracker((props) => {
+export default withTracker(() => {
 	const user = Meteor.user();
 	return { user };
 })(App);

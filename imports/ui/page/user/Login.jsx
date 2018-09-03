@@ -1,5 +1,5 @@
 import { Button, Card } from '/imports/ui/component';
-import { Redirect } from '/imports/ui/util/service';
+import { Redirect, UserResource } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField } from 'uniforms-unstyled';
@@ -13,10 +13,12 @@ export default class Login extends Component {
 		
 		const { email, password } = data;
 		
-		Meteor.loginWithPassword(email, password, (error) => {
+		UserResource.login(email, password, (error, result) => {
+			
 			if ( ! error ) Redirect.toPosts();
 			else alert(error.reason);
-		})
+			
+		});
 		
 	};
 	

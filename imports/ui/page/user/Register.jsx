@@ -1,36 +1,36 @@
-import USER from '/imports/constant/user'
 import { Button, Card } from '/imports/ui/component';
+import { Redirect, UserResource } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField } from 'uniforms-unstyled';
 
 export default class Register extends Component {
+	
 	onSubmit = (data) => {
 		
+		const { email, password } = data;
 		
-		Meteor.call(USER.CREATE, data, (err) => {
+		UserResource.register(email, password, (error, result) => {
+			if ( ! error ) this.loginUser(result);
+			else return alert(err.error)
 			
-			if ( ! err ) this._loginUser(data);
-			else return alert(err.reason)
-			
-		});
+		})
 	};
 	
 	constructor() {
 		super();
+	}
+	
+	
+	loginUser(user) {
 		
-		this.navigateToPosts = this.navigateToPosts.bind(this);
-	}
-	
-	navigateToPosts() {
-		this.props.history.push('/posts')
-	}
-	
-	_loginUser(user) {
-		Meteor.loginWithPassword(user.email, user.password, (err) => {
+		const { email, password } = user;
+		
+		UserResource.login(email, password, (err) => {
 			if ( err ) alert(err.reason);
-			else this.navigateToPosts();
+			else Redirect.toPosts()
 		});
+		
 	}
 	
 	render() {
