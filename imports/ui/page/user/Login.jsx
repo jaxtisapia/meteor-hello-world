@@ -1,3 +1,4 @@
+import { Button, Card } from '/imports/ui/component';
 import { Redirect } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
@@ -21,23 +22,27 @@ export default class Login extends Component {
 	
 	render() {
 		return (
-			<div className="authentication">
+			<Card>
 				
-				<AutoForm onSubmit={ this.handleLogin } schema={ LoginSchema }>
+				<div className="authentication">
 					
-					<ErrorsField/>
+					<AutoForm onSubmit={ this.handleLogin } schema={ LoginSchema }>
+						
+						<ErrorsField/>
+						
+						<AutoField name="email" placeholder="Email"/>
+						
+						<AutoField name="password" type="password" placeholder="Password"/>
+						
+						<div>
+							<Button type="submit">Login</Button>
+						</div>
 					
-					<AutoField name="email" placeholder="Email"/>
-					
-					<AutoField name="password" type="password" placeholder="Password"/>
-					
-					<div>
-						<button type="submit">Login</button>
-					</div>
+					</AutoForm>
 				
-				</AutoForm>
-			
-			</div>
+				</div>
+			</Card>
+		
 		)
 	}
 	

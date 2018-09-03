@@ -1,26 +1,10 @@
-import React, { Component } from 'react';
 import USER from '/imports/constant/user'
-import { AutoForm, AutoField, ErrorsField } from 'uniforms-unstyled';
+import { Button, Card } from '/imports/ui/component';
+import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
+import { AutoField, AutoForm, ErrorsField } from 'uniforms-unstyled';
 
 export default class Register extends Component {
-	constructor() {
-		super();
-		
-		this.navigateToPosts = this.navigateToPosts.bind(this);
-	}
-	
-	navigateToPosts(){
-		this.props.history.push('/posts')
-	}
-	
-	_loginUser(user){
-		Meteor.loginWithPassword(user.email, user.password, (err) => {
-			if ( err ) alert(err.reason);
-			else this.navigateToPosts();
-		});
-	}
-	
 	onSubmit = (data) => {
 		
 		
@@ -32,24 +16,45 @@ export default class Register extends Component {
 		});
 	};
 	
+	constructor() {
+		super();
+		
+		this.navigateToPosts = this.navigateToPosts.bind(this);
+	}
+	
+	navigateToPosts() {
+		this.props.history.push('/posts')
+	}
+	
+	_loginUser(user) {
+		Meteor.loginWithPassword(user.email, user.password, (err) => {
+			if ( err ) alert(err.reason);
+			else this.navigateToPosts();
+		});
+	}
 	
 	render() {
 		return (
-			<div className="authentication">
+			<Card>
 				
-				<AutoForm schema={ RegisterSchema } onSubmit={ this.onSubmit }>
+				<div className="authentication">
 					
-					<ErrorsField/>
+					<AutoForm schema={ RegisterSchema } onSubmit={ this.onSubmit }>
+						
+						<ErrorsField/>
+						
+						<AutoField name="email" placeholder="Email"/>
+						<AutoField name="password" type="password" placeholder="Password *"/>
+						<AutoField name="confirm_password" type="password" placeholder="Confirm password"/>
+						
+						<Button type="submit">Create account</Button>
 					
-					<AutoField name="email" placeholder="Email"/>
-					<AutoField name="password" type="password" placeholder="Password *"/>
-					<AutoField name="confirm_password" type="password" placeholder="Confirm password"/>
-					
-					<button type="submit">Create account</button>
+					</AutoForm>
 				
-				</AutoForm>
+				</div>
 			
-			</div>
+			</Card>
+		
 		)
 	}
 }
