@@ -45,6 +45,7 @@ Comments
 - Can comment for each post
 - Can delete Comment as Post Owner or Comment Owner
 - Can delete Post, only by owner
+- Added a RedirectService at client side to process all redirects
 
 ### Todos
 
@@ -59,8 +60,6 @@ Comments
 - Try React Molecule: on the project
 
 - Clean organisation of styling elements
-
-- Add a RedirectService at client side to process all redirects
 
 - Write MORE Tests
  - Check all Access Controls to prevent unauthorized CRUD actions by wrong users. 
