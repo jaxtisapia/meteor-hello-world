@@ -1,5 +1,5 @@
-import COMMENT from '/imports/constant/comment';
 import { Redirect } from '/imports/ui/util/service';
+import { CommentResource } from '/imports/ui/util/service/index';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-unstyled';
@@ -14,9 +14,11 @@ export default class CommentEdit extends Component {
 	}
 	
 	getCommentDetailsById(commentId) {
-		Meteor.call(COMMENT.FIND_ONE, (commentId), (err, result) => {
+		
+		CommentResource.getOne(commentId, (error, result) => {
 			if ( result ) this.setState({ loading : false, comment : result });
 		});
+		
 	}
 	
 	handleUpdateComment(updateDocument) {
@@ -24,12 +26,13 @@ export default class CommentEdit extends Component {
 		const { title, description } = updateDocument;
 		const { commentId, postId } = this.props;
 		
-		Meteor.call(COMMENT.UPDATE_ONE, commentId, { title, description }, function(err, result) {
+		CommentResource.update(commentId, { title, description }, (error, result) => {
 			
-			if ( ! err ) Redirect.toComments(postId);
-			else alert('An error has happened: ' + err);
+			if ( ! error ) Redirect.toComments(postId);
+			else alert('An error has happened: ' + error);
 			
 		});
+		
 	}
 	
 	componentDidMount() {

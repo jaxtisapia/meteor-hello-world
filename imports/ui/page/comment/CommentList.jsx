@@ -1,5 +1,5 @@
-import COMMENT from '/imports/constant/comment';
 import { Redirect } from '/imports/ui/util/service/';
+import { CommentResource } from 'imports/ui/util/service/index';
 import React, { Component } from 'react';
 import Comment from '../../component/Comment';
 
@@ -10,9 +10,11 @@ export default class CommentList extends Component {
 	}
 	
 	getComments(postId) {
-		Meteor.call(COMMENT.FIND, (postId), (err, results) => {
+		
+		CommentResource.get(postId, (err, results) => {
 			this.setState({ comments : results.comments });
 		});
+		
 	}
 	
 	componentDidMount() {

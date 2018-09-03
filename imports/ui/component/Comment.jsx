@@ -1,5 +1,5 @@
-import COMMENT from '/imports/constant/comment';
 import { Redirect } from '/imports/ui/util/service';
+import { CommentResource } from 'imports/ui/util/service/index';
 import React, { Component } from 'react';
 
 export default class Comment extends Component {
@@ -24,11 +24,13 @@ export default class Comment extends Component {
 	}
 	
 	handleDeleteComment(commentId) {
-		Meteor.call(COMMENT.DELETE_ONE, commentId, (err, result) => {
-			console.log(err, result);
-			if ( err ) return alert(err.error);
+		
+		CommentResource.deleteOne(commentId, (error, result) => {
+			
+			if ( error ) return alert(error.error);
 			alert('Comment deleted!')
 			
 		});
+		
 	}
 }

@@ -1,5 +1,5 @@
-import COMMENT from '/imports/constant/comment'
 import { Redirect } from '/imports/ui/util/service';
+import { CommentResource } from 'imports/ui/util/service/index';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField } from 'uniforms-unstyled';
@@ -8,18 +8,21 @@ export default class PostAdd extends Component {
 	
 	
 	submit = (comment) => {
-		const { postId } = this.props;
 		
-		comment.userId = Meteor.userId();
+		const { postId } = this.props;
+		const userId = Meteor.userId();
+		
+		comment.userId = userId;
 		comment.postId = postId;
 		
-		Meteor.call(COMMENT.CREATE, comment, (err) => {
+		CommentResource.add(comment, (error) => {
 			
-			if ( err ) return alert(err.reason);
+			if ( error ) return alert(error.reason);
 			alert('Comment added!');
 			Redirect.toComments(postId);
 			
 		});
+		
 	};
 	
 	constructor() {
