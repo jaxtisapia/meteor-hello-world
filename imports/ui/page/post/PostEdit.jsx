@@ -18,7 +18,7 @@ export default class PostEdit extends Component {
 	}
 	
 	componentDidMount() {
-		this.getPostDetailsById(this.props._id);
+		this.getPostDetailsById(this.props.postId);
 	}
 	
 	
@@ -30,7 +30,7 @@ export default class PostEdit extends Component {
 		else return <div>
 			<AutoForm model={ this.state.post } schema={ Schema } onSubmit={ data => {
 				
-				Meteor.call(POST.UPDATE_ONE, this.props._id, data, function(err, result) {
+				Meteor.call(POST.UPDATE_ONE, this.props.postId, data, function(err, result) {
 					
 					if ( ! err ) Redirect.toPosts();
 					
@@ -39,7 +39,7 @@ export default class PostEdit extends Component {
 			}
 			}>
 				
-				<h2>Edit post with id { this.props._id }</h2>
+				<h2>Edit post with id { this.props.postId }</h2>
 				
 				<AutoField name="title"/>
 				

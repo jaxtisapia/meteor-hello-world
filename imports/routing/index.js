@@ -11,7 +11,7 @@ route('/register', Register);
 
 route('/posts/add', PostAdd);
 route('/posts', PostList);
-route('/posts/edit/:_id', PostEdit);
+route('/posts/:postId/edit/', PostEdit);
 
 route('/posts/:postId/comments', CommentList);
 route('/posts/:postId/comments/add', CommentAdd);
