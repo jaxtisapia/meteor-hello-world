@@ -1,5 +1,5 @@
+import { Post } from '/imports/ui/component';
 import Pagination from '/imports/ui/component/Pagination';
-import Post from '/imports/ui/component/Post';
 import { PostResource } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 

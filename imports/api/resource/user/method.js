@@ -1,6 +1,5 @@
-import USER from '/imports/constant/user';
-import Security from '/imports/api/security';
 import UserService from '/imports/api/resource/user/service';
+import USER from '/imports/constant/user';
 
 Meteor
 	.methods(

@@ -1,5 +1,4 @@
-import { Redirect } from '/imports/ui/util/service';
-import { CommentResource } from '/imports/ui/util/service/index';
+import { CommentResource, Redirect } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-unstyled';

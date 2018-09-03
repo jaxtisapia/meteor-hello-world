@@ -1,7 +1,6 @@
-import { Redirect } from '/imports/ui/util/service/';
-import { CommentResource } from 'imports/ui/util/service/index';
+import { CommentResource, Redirect } from '/imports/ui/util/service/';
 import React, { Component } from 'react';
-import Comment from '../../component/Comment';
+import { Comment } from '../../component';
 
 export default class CommentList extends Component {
 	constructor() {
