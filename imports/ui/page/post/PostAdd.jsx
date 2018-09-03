@@ -1,5 +1,5 @@
-import POST from '/imports/constant/post'
 import { Redirect } from '/imports/ui/util/service';
+import { PostResource } from '/imports/ui/util/service/index';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField } from 'uniforms-unstyled';
@@ -7,12 +7,12 @@ import { AutoField, AutoForm, ErrorsField, LongTextField } from 'uniforms-unstyl
 export default class PostAdd extends Component {
 	
 	submit = (post) => {
-		Meteor.call(POST.CREATE, post, (err) => {
-
-			if ( err ) return alert(err.reason);
-			alert('Post added!')
-
+		
+		PostResource.add(post, (error, result) => {
+			if ( error ) return alert(error.reason);
+			else alert('Post added!')
 		});
+		
 	};
 	
 	constructor(props) {

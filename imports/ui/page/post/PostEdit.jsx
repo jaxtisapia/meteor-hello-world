@@ -1,5 +1,5 @@
-import POST from '/imports/constant/post';
 import { Redirect } from '/imports/ui/util/service';
+import { PostResource } from '/imports/ui/util/service/index';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-unstyled';
@@ -11,9 +11,18 @@ export default class PostEdit extends Component {
 		this.state = { loading : true, post : { title : '', description : '' } }
 	}
 	
-	getPostDetailsById(postId){
-		Meteor.call(POST.FIND_ONE, postId, (err, result) => {
+	getPostDetailsById(postId) {
+		
+		PostResource.getOne(postId, (error, result) => {
 			if ( result ) this.setState({ loading : false, post : result });
+		});
+		
+	}
+	
+	handleUpdatePost(postId, data) {
+		PostResource.update(postId, data, (error, result) => {
+			if ( ! error ) Redirect.toPosts();
+			else alert('An error has happened: ' + error)
 		});
 	}
 	
@@ -24,22 +33,15 @@ export default class PostEdit extends Component {
 	
 	render() {
 		
-		if ( this.state.loading ) { return  <div>Loading editing post..</div> }
+		const { postId } = this.props;
+		
+		if ( this.state.loading ) { return <div>Loading editing post..</div> }
 		
 		
 		else return <div>
-			<AutoForm model={ this.state.post } schema={ Schema } onSubmit={ data => {
+			<AutoForm model={ this.state.post } schema={ Schema } onSubmit={ data => this.handleUpdatePost(postId, data) }>
 				
-				Meteor.call(POST.UPDATE_ONE, this.props.postId, data, function(err, result) {
-					
-					if ( ! err ) Redirect.toPosts();
-					
-					else alert('An error has happened: ' + err);
-				});
-			}
-			}>
-				
-				<h2>Edit post with id { this.props.postId }</h2>
+				<h2>Edit post with id { postId }</h2>
 				
 				<AutoField name="title"/>
 				
@@ -60,6 +62,6 @@ export default class PostEdit extends Component {
 
 const Schema = new SimpleSchema(
 	{
-		title : { type : String, label : 'Title', max : 200, optional: false },
-		description : { type : String, max: 600, label : 'Description', optional: true }
+		title : { type : String, label : 'Title', max : 200, optional : false },
+		description : { type : String, max : 600, label : 'Description', optional : true }
 	});

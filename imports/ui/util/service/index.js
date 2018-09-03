@@ -1,5 +1,7 @@
+import PostService from './PostService';
 import RedirectService from './RedirectService';
 
 export {
-	RedirectService as Redirect
+	RedirectService as Redirect,
+	PostService as PostResource
 }

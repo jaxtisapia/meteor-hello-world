@@ -1,18 +1,16 @@
-import POST from '/imports/constant/post';
 import { Redirect } from '/imports/ui/util/service';
+import { PostResource } from '/imports/ui/util/service/index';
 import React, { Component } from 'react';
 
 export default class Post extends Component {
 	
-	
 	handleDeletePost(postId) {
-		const userId = Meteor.userId();
 		
-		Meteor.call(POST.DELETE_ONE, postId, (err, result) => {
-			console.log(err, result);
-			if ( err ) return alert(err.error);
+		PostResource.deleteOne(postId, (error, result) => {
+			if ( error ) return alert(error.error);
 			alert('Post deleted!')
-		})
+		});
+		
 	}
 	
 	render() {

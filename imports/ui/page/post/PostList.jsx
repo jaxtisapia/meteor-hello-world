@@ -1,6 +1,6 @@
-import POST from '/imports/constant/post'
 import Pagination from '/imports/ui/component/Pagination';
 import Post from '/imports/ui/component/Post';
+import { PostResource } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 
 export default class PostList extends Component {
@@ -9,10 +9,20 @@ export default class PostList extends Component {
 		this.state = { posts : null };
 	}
 	
-	componentDidMount() {
-		Meteor.call(POST.FIND, (err, results) => {
+	getPosts(page, limit) {
+		
+		PostResource.get(page, limit, (err, results) => {
 			this.setState({ posts : results.posts });
 		});
+		
+	}
+	
+	componentDidMount() {
+		// TODO process page and limits better
+		const page = 1;
+		const limit = 20;
+		
+		this.getPosts(page, limit);
 	}
 	
 	render() {
@@ -25,14 +35,10 @@ export default class PostList extends Component {
 			<div className="post">
 				{
 					
-					posts.map((post) => {
-						return (
-							<Post key={ post._id } post={ post }/>
-						)
-					}) }
+					posts.map(post => <Post key={ post._id } post={ post }/>) }
 				
 				<Pagination/>
-				
+			
 			</div>
 		)
 	}
