@@ -2,6 +2,23 @@ Trying hands on Meteor JS.
 Trying to establish best practises by building a premier project. 
 Temporary Project, might be deleted soon.
 
+### Proposed Mockups
+
+Login Page
+![login](https://user-images.githubusercontent.com/32112641/44999361-30a2a000-afac-11e8-9d10-46e160f13eef.jpg)
+
+Registration Page
+![register](https://user-images.githubusercontent.com/32112641/44999412-92630a00-afac-11e8-95be-684a8e8f728c.jpg)
+
+Logged In View
+![logged in](https://user-images.githubusercontent.com/32112641/44999419-a3ac1680-afac-11e8-9c93-ea1bbc660a9c.jpg)
+
+Posts
+![posts](https://user-images.githubusercontent.com/32112641/44999435-bde5f480-afac-11e8-9d65-d7911587e1dd.jpg)
+
+Comments
+![comments](https://user-images.githubusercontent.com/32112641/44999440-cf2f0100-afac-11e8-8f13-95bb03f911a6.jpg)
+
 ### Accomplishment
 
  - Understood Meteor JS Concept. Meteor JS is a great, and unique framework. 
