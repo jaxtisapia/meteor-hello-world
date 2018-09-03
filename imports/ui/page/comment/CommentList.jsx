@@ -1,5 +1,5 @@
 import COMMENT from '/imports/constant/comment';
-import route from '/imports/routing/router';
+import { Redirect } from '/imports/ui/util/service/';
 import React, { Component } from 'react';
 import Comment from '../../component/Comment';
 
@@ -34,7 +34,7 @@ export default class CommentList extends Component {
 						: comments.map((comment) => <Comment key={ comment._id } comment={ comment } postId={ postId }/>
 						)
 				}
-				<button onClick={ () => route.go(`/posts/${postId}/comments/add`) }>Create a new comment</button>
+				<button onClick={ () => Redirect.toAddComment(postId) }>Create a new comment</button>
 			</div>
 		)
 	}

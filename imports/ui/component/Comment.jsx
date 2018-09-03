@@ -1,5 +1,5 @@
 import COMMENT from '/imports/constant/comment';
-import route from '/imports/routing/router';
+import { Redirect } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 
 export default class Comment extends Component {
@@ -16,7 +16,7 @@ export default class Comment extends Component {
 			<p>Comment id: { comment._id } </p>
 			<p>Comment title: { comment.title }, Comment Description: { comment.description } </p>
 			<button onClick={ () => {
-				route.go(`/posts/${postId}/comments/${comment._id}/edit`)
+				Redirect.toEditComment(postId, comment._id);
 			} }> Edit comment
 			</button>
 			<button onClick={ () => this.handleDeleteComment(comment._id) }> Delete comment</button>

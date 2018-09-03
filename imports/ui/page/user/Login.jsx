@@ -1,7 +1,7 @@
+import { Redirect } from '/imports/ui/util/service';
 import React, { Component } from 'react';
-import { AutoForm, AutoField, ErrorsField, SubmitField } from 'uniforms-unstyled';
 import SimpleSchema from 'simpl-schema';
-import route from '/imports/routing/router';
+import { AutoField, AutoForm, ErrorsField } from 'uniforms-unstyled';
 
 export default class Login extends Component {
 	constructor(props) {
@@ -13,7 +13,7 @@ export default class Login extends Component {
 		const { email, password } = data;
 		
 		Meteor.loginWithPassword(email, password, (error) => {
-			if ( ! error ) route.go('/posts');
+			if ( ! error ) Redirect.toPosts();
 			else alert(error.reason);
 		})
 		
@@ -40,7 +40,7 @@ export default class Login extends Component {
 			</div>
 		)
 	}
-
+	
 }
 
 const LoginSchema = new SimpleSchema(

@@ -1,4 +1,5 @@
 import POST from '/imports/constant/post';
+import { Redirect } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 
 export default class Post extends Component {
@@ -26,20 +27,14 @@ export default class Post extends Component {
 				<p>Post id: { post._id } </p>
 				<p>Post title: { post.title }, Post Description: { post.description } </p>
 				
-				<button onClick={ () => {
-					route.go('/posts/edit/' + post._id)
-				} }> Edit post
-				</button>
+				<button onClick={ () => Redirect.toEditPost(post._id) }> Edit post</button>
 				
 				{ (isOwnerOfPost)
 					? <button onClick={ () => this.handleDeletePost(post._id) }>Delete Post</button>
 					: null
 				}
 				
-				<button onClick={ () => {
-					route.go(`/posts/${post._id}/comments`)
-				} }> View Comments
-				</button>
+				<button onClick={ () => Redirect.toComments(post._id) }> View Comments</button>
 			
 			</div>
 		)

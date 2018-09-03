@@ -1,5 +1,5 @@
 import COMMENT from '/imports/constant/comment';
-import route from '/imports/routing/router'
+import { Redirect } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-unstyled';
@@ -26,7 +26,7 @@ export default class CommentEdit extends Component {
 		
 		Meteor.call(COMMENT.UPDATE_ONE, commentId, { title, description }, function(err, result) {
 			
-			if ( ! err ) route.go(`/posts/${postId}/comments`);
+			if ( ! err ) Redirect.toComments(postId);
 			else alert('An error has happened: ' + err);
 			
 		});

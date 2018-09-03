@@ -1,5 +1,7 @@
-import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import React from 'react';
+
+import './styles/uikit/uikit.min.css'
 
 const App = ({ main, routeProps, user }) => {
 	

@@ -1,5 +1,5 @@
 import POST from '/imports/constant/post'
-import route from '/imports/routing/router'
+import Pagination from '/imports/ui/component/Pagination';
 import Post from '/imports/ui/component/Post';
 import React, { Component } from 'react';
 
@@ -24,12 +24,15 @@ export default class PostList extends Component {
 		else return (
 			<div className="post">
 				{
+					
 					posts.map((post) => {
 						return (
 							<Post key={ post._id } post={ post }/>
 						)
 					}) }
-				<button onClick={ () => route.go('/posts/add') }>Create a new post</button>
+				
+				<Pagination/>
+				
 			</div>
 		)
 	}

@@ -1,5 +1,5 @@
 import COMMENT from '/imports/constant/comment'
-import route from '/imports/routing/router'
+import { Redirect } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField } from 'uniforms-unstyled';
@@ -17,7 +17,7 @@ export default class PostAdd extends Component {
 			
 			if ( err ) return alert(err.reason);
 			alert('Comment added!');
-			route.go(`posts/${postId}/comments`)
+			Redirect.toComments(postId);
 			
 		});
 	};
@@ -40,7 +40,7 @@ export default class PostAdd extends Component {
 					
 					<button type='submit'>Add Comment</button>
 					
-					<button onClick={ () => route.go(`/posts/${postId}/comments`) }>Back to comments</button>
+					<button onClick={ () => Redirect.toComments(postId) }>Back to comments</button>
 				
 				</AutoForm>
 			</div>

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
 import POST from '/imports/constant/post'
-import { AutoForm, AutoField, LongTextField, ErrorsField } from 'uniforms-unstyled';
+import { Redirect } from '/imports/ui/util/service';
+import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
-import route from '/imports/routing/router'
+import { AutoField, AutoForm, ErrorsField, LongTextField } from 'uniforms-unstyled';
 
 export default class PostAdd extends Component {
 	
@@ -33,7 +33,7 @@ export default class PostAdd extends Component {
 					
 					<button type='submit'>Add post</button>
 					
-					<button onClick={ () => route.go('/posts') }>Back to posts</button>
+					<button onClick={ () => Redirect.toPosts() }>Back to posts</button>
 				
 				</AutoForm>
 			</div>

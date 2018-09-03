@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
 import POST from '/imports/constant/post';
+import { Redirect } from '/imports/ui/util/service';
+import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
-import route from '/imports/routing/router'
-import {AutoField, AutoForm, SubmitField, LongTextField, ErrorsField } from 'uniforms-unstyled';
+import { AutoField, AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-unstyled';
 
 export default class PostEdit extends Component {
 	
@@ -32,7 +32,7 @@ export default class PostEdit extends Component {
 				
 				Meteor.call(POST.UPDATE_ONE, this.props._id, data, function(err, result) {
 					
-					if ( ! err ) route.go('/posts');
+					if ( ! err ) Redirect.toPosts();
 					
 					else alert('An error has happened: ' + err);
 				});
