@@ -60,13 +60,13 @@ class PostService {
 		let post = Post.findOne({ _id : postId });
 		
 		if ( ! post ) throw new Meteor.Error(ERRORS.POST.NOT_FOUND);
-		if ( post.userId !== userId ) throw new Meteor.Error(ERRORS.POST.CANNOT_EDIT);
 		
-		const result = Post.update({ _id : postId }, {
+		const isOwnerOfPost = (post.userId === userId);
+		if ( ! isOwnerOfPost ) throw new Meteor.Error(ERRORS.POST.CANNOT_EDIT);
+		
+		return Post.update({ _id : postId }, {
 			$set : { title : updateDocument.title, description : updateDocument.description }
 		});
-		
-		return (result === 1 ) ? this.getById(postId) : post;
 	};
 	
 	/**
@@ -85,7 +85,9 @@ class PostService {
 		let post = Post.findOne({ _id : postId, userId });
 		
 		if ( ! post ) throw new Meteor.Error(ERRORS.POST.NOT_FOUND);
-		if ( post.userId !== userId ) throw new Meteor.Error(ERRORS.POST.CANNOT_DELETE);
+		
+		const isOwnerOfPost = (post.userId === userId );
+		if ( ! isOwnerOfPost ) throw new Meteor.Error(ERRORS.POST.CANNOT_DELETE);
 		
 		return Post.remove({ _id : postId });
 	};

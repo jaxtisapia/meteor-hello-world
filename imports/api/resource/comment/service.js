@@ -1,5 +1,5 @@
-import PostService from '/imports/api/resource/post/service';
 import Comment from '/imports/api/resource/comment/collection';
+import PostService from '/imports/api/resource/post/service';
 import ERRORS from '/imports/constant/error'
 
 class CommentService {
@@ -24,7 +24,9 @@ class CommentService {
 		const comment = CommentService.getByCommentId(commentId);
 		
 		if ( ! comment ) throw new Meteor.Error(ERRORS.COMMENT.NOT_FOUND);
-		if ( comment.userId !== userId ) throw new Meteor.Error(ERRORS.COMMENT.CANNOT_EDIT);
+		
+		const isOwnerOfComment = (comment.userId === userId);
+		if ( ! isOwnerOfComment ) throw new Meteor.Error(ERRORS.COMMENT.CANNOT_EDIT);
 		
 		return Comment.update({ _id : commentId }, {
 			$set : { title : updateDocument.title, description : updateDocument.description }
@@ -46,8 +48,8 @@ class CommentService {
 	}
 	
 	static deleteByCommentId(userId, commentId) {
-	
-			if ( ! userId ) throw new Meteor.Error(ERRORS.USER.ID_UNSPECIFIED);
+		
+		if ( ! userId ) throw new Meteor.Error(ERRORS.USER.ID_UNSPECIFIED);
 		if ( ! commentId ) throw new Meteor.Error(ERRORS.COMMENT.ID_UNSPECIFIED);
 		
 		let comment = CommentService.getByCommentId(commentId);
@@ -61,7 +63,7 @@ class CommentService {
 		const isEligibleToDeleteComment = (isOwnerOfComment || isOwnerOfPost);
 		
 		if ( ! comment ) throw new Meteor.Error(ERRORS.COMMENT.NOT_FOUND);
-		if ( !isEligibleToDeleteComment ) throw new Meteor.Error(ERRORS.COMMENT.CANNOT_DELETE);
+		if ( ! isEligibleToDeleteComment ) throw new Meteor.Error(ERRORS.COMMENT.CANNOT_DELETE);
 		
 		return CommentService._delete(commentId);
 		
@@ -73,7 +75,9 @@ class CommentService {
 		let post = PostService.getById(postId);
 		
 		if ( ! post ) throw new Meteor.Error(ERRORS.POST.NOT_FOUND);
-		if ( post.userId !== userId ) throw (ERRORS.COMMENT.CANNOT_DELETE_MANY);
+		
+		const isOwnerOfPost = (post.userId === userId);
+		if ( ! isOwnerOfPost ) throw (ERRORS.COMMENT.CANNOT_DELETE_MANY);
 		
 		return this._deleteMany(postId)
 	}
