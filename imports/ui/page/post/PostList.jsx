@@ -9,25 +9,20 @@ export default class PostList extends Component {
 		this.state = { posts : null };
 	}
 	
-	getPosts(page, limit) {
+	getPosts() {
 		
-		PostResource.get(page, limit, (err, results) => {
-			this.setState({ posts : results.posts });
+		PostResource.get((err, results) => {
+			this.setState({ posts : results });
 		});
 		
 	}
 	
 	componentDidMount() {
-		// TODO process page and limits better
-		const page = 1;
-		const limit = 20;
-		
-		this.getPosts(page, limit);
+		this.getPosts();
 	}
 	
 	render() {
 		const { posts } = this.state;
-		const { history } = this.props;
 		
 		if ( ! posts ) return <div>Loading....</div>;
 		

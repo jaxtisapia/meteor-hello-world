@@ -1,5 +1,4 @@
 import POST from '/imports/constant/post';
-import DEFAULT_CONSTANT from '/imports/constant/default';
 import Security from '/imports/api/security';
 import PostService from '/imports/api/resource/post/service';
 
@@ -21,16 +20,12 @@ Meteor
 			
 			/**
 			 * RPC Call to get Posts
-			 * @param {int} page - Page Number of expectant result
-			 * @param {int} count - Number of post items per page
-			 * @return {{posts, meta}} A list of posts in 'posts' object && Page details in 'meta' object
+			 * @return [] A list of posts
 			 *
-			 * Example { posts: [...somePosts], meta: { page: 2, count: 20} }
+			 * Example [{..postItems},{...postItems},{...postItems}]
 			 */
-			[POST.FIND](page, count) {
-				if ( ! page ) page = DEFAULT_CONSTANT.PAGE_NUMBER;
-				if ( ! count ) count = DEFAULT_CONSTANT.PAGE_LIMIT;
-				return PostService.get({ page, count })
+			[POST.FIND]() {
+				return PostService.get()
 			},
 			
 			/**

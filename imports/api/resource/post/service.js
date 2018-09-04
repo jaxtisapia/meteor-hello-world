@@ -1,5 +1,4 @@
 import Post from '/imports/api/resource/post/collection';
-import DEFAULT_CONSTANT from '/imports/constant/default'
 import ERRORS from '/imports/constant/error'
 
 class PostService {
@@ -15,14 +14,9 @@ class PostService {
 	 * Get a list of Post Items, limited by pages and limits of results
 	 * @return {{posts: Array, meta: {page: number, count: number}}}
 	 */
-	static get({ page, count } = { page : DEFAULT_CONSTANT.PAGE_NUMBER, count : DEFAULT_CONSTANT.PAGE_LIMIT }) {
+	static get() {
 		
-		const meta = { page, count };
-		const skip = (page - 1) * count;
-		
-		const posts = Post.find({}, { skip, limit : count }).fetch();
-		
-		return { posts, meta };
+		return Post.find().fetch();
 	};
 	
 	/**
