@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
+import { PaginationButton } from '/imports/ui/component';
 
 export default class Pagination extends Component {
 	
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 	
 	render() {
 		
+		const { count, limit, page, navigateToPage } = this.props;
+		
+		let numberOfPages = Math.ceil(count / limit);
+		numberOfPages = (numberOfPages < 1) ? 1 : numberOfPages;
+		
 		return (<div>
+			
 			<ul className="uk-pagination">
-				<li><a href="#">1</a></li>
-				<li className="uk-disabled"><span>...</span></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li className="uk-active"><span>7</span></li>
-				<li><a href="#">8</a></li>
+				
+				{
+					[...new Array(numberOfPages)].map((element, index) => {
+						
+						const currentPage = index + 1;
+						const isActivePage = page === currentPage;
+						
+						return <PaginationButton key={ currentPage } active={ isActivePage } page={ currentPage } navigateToPage={navigateToPage} />
+					})
+				}
+			
 			</ul>
 		</div>)
 	}

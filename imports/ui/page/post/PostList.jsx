@@ -2,7 +2,7 @@ import { Post } from '/imports/ui/component';
 import Pagination from '/imports/ui/component/Pagination';
 import POST_CONSTANTS from '/imports/constant/post'
 import { withTracker } from 'meteor/react-meteor-data';
-import { PostResource } from '/imports/ui/util/service';
+import { PostResource, Redirect } from '/imports/ui/util/service';
 import { Posts as PostsCollection } from '/db';
 
 import React, { Component } from 'react';
@@ -26,8 +26,24 @@ class PostList extends Component {
 		this.setState({ page, limit });
 	}
 	
+	componentDidUpdate(prevProps) {
+		const {newPage = 0, newLimit = 10} = this.props.query;
+		const {oldPage = 0, oldLimit = 10} = prevProps.query;
+		
+		const hasPageChanged = (newPage !== oldPage);
+		const hasLimitChanged = (newLimit !== oldLimit);
+		
+		const isQueryChanged = hasPageChanged || hasLimitChanged;
+
+		if (isQueryChanged) {
+			this.getPosts( newPage, newLimit);
+			this.setState({ newPage, newLimit });
+		}
+		
+	}
+	
 	render() {
-		const { posts } = this.state;
+		const { posts, page, limit } = this.state;
 		const { postsCount } = this.props;
 		
 		if ( ! posts ) return <div>Loading....</div>;
@@ -38,7 +54,7 @@ class PostList extends Component {
 					
 					posts.map(post => <Post key={ post._id } post={ post }/>) }
 				
-				<Pagination/>
+				<Pagination count={ postsCount } limit={ limit } page={ page } navigateToPage={ Redirect.toPostsPage }/>
 			
 			</div>
 		)
