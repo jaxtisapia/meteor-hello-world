@@ -55,6 +55,6 @@ Meteor
 			[POST.DELETE_ONE](postId) {
 				Security.isLoggedIn(this.userId);
 				return PostService.deleteByID(this.userId, postId);
-			}
+			},
 			
 		});

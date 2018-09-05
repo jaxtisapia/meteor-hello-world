@@ -1,9 +1,9 @@
-import { CommentResource, Redirect } from '/imports/ui/util/service/';
+import { Redirect } from '/imports/ui/util/service/';
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import COMMENT_CONSTANTS from '/imports/constant/comment'
 import { Comment } from '../../component';
-import { Comments } from '/db';
+import { CommentsCollection } from '/db';
 
 class CommentList extends Component {
 	constructor() {
@@ -11,20 +11,7 @@ class CommentList extends Component {
 		this.state = { comments : null };
 	}
 	
-	// getComments(postId) {
-	//
-	// 	CommentResource.get(postId, (err, results) => {
-	// 		this.setState({ comments : results.comments });
-	// 	});
-	//
-	// }
-	//
-	// componentDidMount() {
-	// 	this.getComments(this.props.postId);
-	// }
-	
 	render() {
-		// const { comments } = this.state;
 		const { postId, comments } = this.props;
 		
 		if ( ! comments ) return <div>Loading....</div>;
@@ -50,7 +37,7 @@ export default withTracker(props => {
 	
 	return {
 		loading : ! handle.ready(),
-		comments : Comments.find({ postId }).fetch(),
+		comments : CommentsCollection.find({ postId }).fetch(),
 		... props
 	};
 })(CommentList);

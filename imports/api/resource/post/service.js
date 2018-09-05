@@ -16,6 +16,8 @@ class PostService {
 	 */
 	static get(page = 1, limit = 10) {
 		
+		page = (page < 1 ) ? 1 : page;
+		
 		limit = parseInt(limit);
 		page = parseInt(page);
 		

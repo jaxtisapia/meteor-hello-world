@@ -5,6 +5,7 @@ const post = {
 	FIND_ONE: 'find_one',
 	DELETE_ONE: 'delete_one',
 	CREATE: 'create',
+	COUNT_ALL: 'count_all',
 	UPDATE_ONE: 'update_one',
 };
 
