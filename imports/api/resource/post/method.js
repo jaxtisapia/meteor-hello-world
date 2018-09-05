@@ -24,8 +24,8 @@ Meteor
 			 *
 			 * Example [{..postItems},{...postItems},{...postItems}]
 			 */
-			[POST.FIND]() {
-				return PostService.get()
+			[POST.FIND](page, limit) {
+				return PostService.get(page, limit)
 			},
 			
 			/**

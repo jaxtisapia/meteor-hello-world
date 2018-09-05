@@ -4,7 +4,7 @@ export default class PostService {
 	
 	static add = (post, callback) => Meteor.call(POST.CREATE, post, callback);
 	
-	static get = (callback) => Meteor.call(POST.FIND, callback);
+	static get = (page, limit, callback) => Meteor.call(POST.FIND,page, limit, callback);
 	
 	static getOne = (postId, callback) => Meteor.call(POST.FIND_ONE, postId, callback);
 	

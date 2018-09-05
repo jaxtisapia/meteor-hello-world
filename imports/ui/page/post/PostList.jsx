@@ -6,19 +6,20 @@ import React, { Component } from 'react';
 export default class PostList extends Component {
 	constructor() {
 		super();
-		this.state = { posts : null };
+		this.state = { posts : null, page: 0, limit:0 };
 	}
 	
-	getPosts() {
-		
-		PostResource.get((err, results) => {
+	getPosts(page, limit) {
+		PostResource.get(page, limit, (err, results) => {
 			this.setState({ posts : results });
 		});
-		
 	}
 	
 	componentDidMount() {
-		this.getPosts();
+		const { page = 0, limit = 10 } = this.props.query;
+		this.getPosts(page, limit);
+		
+		this.setState({ page, limit});
 	}
 	
 	render() {

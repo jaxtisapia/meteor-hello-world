@@ -12,11 +12,19 @@ class PostService {
 	
 	/**
 	 * Get a list of Post Items, limited by pages and limits of results
-	 * @return {{posts: Array, meta: {page: number, count: number}}}
+	 * @return {{posts: Array }}
 	 */
-	static get() {
+	static get(page = 1, limit = 10) {
 		
-		return Post.find().fetch();
+		limit = parseInt(limit);
+		page = parseInt(page);
+		
+		const optionalQueries = {
+			skip : (page - 1) * limit,
+			limit
+		};
+		
+		return Post.find({}, optionalQueries).fetch();
 	};
 	
 	/**
