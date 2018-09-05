@@ -47,10 +47,10 @@ Comments
 - Can delete Post, only by owner
 - Added a RedirectService at client side to process all redirects
 - Comments are now Reactive
+- Added pagination for post list
 
 ### Todos
 
-- Make a pagination for post list
 - Style all pages with material design
 
 - Use GraphQL
