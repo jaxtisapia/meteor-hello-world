@@ -36,7 +36,7 @@ class Pagination extends Component {
 	
 }
 
-PaginationButton.propTypes = {
+Pagination.propTypes = {
 	count : PropTypes.number,
 	limit : PropTypes.number,
 	page : PropTypes.number,

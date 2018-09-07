@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import COMMENT_CONSTANTS from '/imports/constant/comment'
 import { Comment } from '../../component';
-import { CommentsCollection } from '/db';
+import { Comments as CommentsCollection } from '/db';
 
 class CommentList extends Component {
 	constructor() {
