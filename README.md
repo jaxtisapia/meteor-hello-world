@@ -48,20 +48,21 @@ Comments
 - Added a RedirectService at client side to process all redirects
 - Comments are now Reactive
 - Added pagination for post list
+- Added Grapher to establish relationships
+
+## On hold
+- Try easify on the project ( Buggy )
+- Try React Molecule: on the project ( Buggy )
 
 ### Todos
-
-- Style all pages with material design
+- Style all pages with material design/Custom Library
 
 - Use GraphQL
-- Use Grapher to establish relationships
-
-- Try easify on the project
-- Try React Molecule: on the project
 
 - Clean organisation of styling elements
 
 - Write MORE Tests
+
  - Check all Access Controls to prevent unauthorized CRUD actions by wrong users. 
  Example, If a user supplies a valid Id but different User Id, he can edit others'
  post
@@ -76,3 +77,5 @@ of forcing all values to be sent and updated
  # Credit
  Most of my Client Side UI pages and components were from this repository:
  https://github.com/Elitemd/final_boss_project
+ 
+ Tutorial from http://www.meteor-tuts.com/
