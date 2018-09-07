@@ -1,4 +1,4 @@
-import Helper from '/imports/services/helper';
+import { Helper } from '/imports/util';
 
 const comment = {
 	FIND: 'find',
