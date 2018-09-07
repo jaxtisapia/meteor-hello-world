@@ -13,11 +13,9 @@ describe('Post', function() {
 	const title = faker.name.findName();
 	
 	const invalidPostId = 'somewrongids';
-	const validPostId = 'qquaxJGuEhSMLvzB6';
+	const validPostId = '37PruwNv4c39fZJXk';
 	
 	const PostValidator = Post.simpleSchema().namedContext();
-	
-	const DEFAULT_COUNT_OF_POST_RESULTS = 20;
 	
 	before(function() {
 		
@@ -73,21 +71,13 @@ describe('Post', function() {
 			it('should be able to return paginated list of posts, even without being specified', function() {
 				const allPostsResult = PostService.get();
 				
-				expect(allPostsResult.posts).to.be.an('array');
-				
-				expect(allPostsResult.meta.page).to.be.a('number');
-				expect(allPostsResult.meta.page).to.be.equal(1);
-				expect(allPostsResult.meta.count).to.be.equal(DEFAULT_COUNT_OF_POST_RESULTS);
+				expect(allPostsResult).to.be.an('array');
 			});
 			
 			it('should be able to return paginated list of Posts, when page and expected count of result is specified', function() {
 				const secondPagePostsResult = PostService.get({ page : 2, count : 50 });
 				
-				expect(secondPagePostsResult.posts).to.be.an('array');
-				
-				expect(secondPagePostsResult.meta.page).to.be.a('number');
-				expect(secondPagePostsResult.meta.page).to.be.equal(2);
-				expect(secondPagePostsResult.meta.count).to.be.equal(50);
+				expect(secondPagePostsResult).to.be.an('array');
 			})
 			
 		});
@@ -125,8 +115,8 @@ describe('Post', function() {
 		
 		it('should throw an error when an invalid Post Id is specified', function() {
 			
-			const updatedPostWithInvalidId = PostService.updateByID(userId, invalidPostId, {});
-			assert.throws(updatedPostWithInvalidId);
+			const updatedPostWithInvalidId = PostService.updateByID;
+			assert.throws(updatedPostWithInvalidId(userId, invalidPostId, {}));
 		});
 		
 		it('should update a Post when valid Id supplied, but only one property specified', function() {
