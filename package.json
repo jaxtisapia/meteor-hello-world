@@ -5,8 +5,8 @@
     "start": "MONGO_URL=mongodb://localhost:27017/meteor-tuts meteor run --settings .deploy/local.json --port 3000",
     "pretest": "npm run lint --silent",
     "lint": "eslint .",
-    "test": "meteor test --once --driver-package meteortesting:mocha",
-    "test:watch": "MONGO_URL=mongodb://localhost:27017/meteor-tuts TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
+    "test": "MONGO_URL=mongodb://localhost:27017/meteor-tuts-test meteor test --once --driver-package meteortesting:mocha",
+    "test:watch": "MONGO_URL=mongodb://localhost:27017/meteor-tuts-test TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
