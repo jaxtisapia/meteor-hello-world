@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { PaginationButton } from '/imports/ui/component';
+import PropTypes from 'prop-types';
 
-export default class Pagination extends Component {
+class Pagination extends Component {
 	
 	constructor(props) {
 		super(props);
@@ -24,7 +25,8 @@ export default class Pagination extends Component {
 						const currentPage = index + 1;
 						const isActivePage = page === currentPage;
 						
-						return <PaginationButton key={ currentPage } active={ isActivePage } page={ currentPage } navigateToPage={navigateToPage} />
+						return <PaginationButton key={ currentPage } active={ isActivePage } page={ currentPage }
+						                         navigateToPage={ navigateToPage }/>
 					})
 				}
 			
@@ -33,3 +35,12 @@ export default class Pagination extends Component {
 	}
 	
 }
+
+PaginationButton.propTypes = {
+	count : PropTypes.number,
+	limit : PropTypes.number,
+	page : PropTypes.number,
+	navigateToPage : PropTypes.func
+};
+
+export default Pagination;

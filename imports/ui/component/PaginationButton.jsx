@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class PaginationButton extends Component {
 	
@@ -13,5 +14,11 @@ class PaginationButton extends Component {
 		);
 	}
 }
+
+PaginationButton.propTypes = {
+	page: PropTypes.number,
+	active: PropTypes.bool,
+	navigateToPage: PropTypes.func,
+};
 
 export default PaginationButton;
