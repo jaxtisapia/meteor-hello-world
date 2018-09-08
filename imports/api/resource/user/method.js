@@ -11,7 +11,7 @@ Meteor
 			 * @param {string} password - Password of new User to be created
 			 * @return {string} User Id of created user
 			 */
-			[USER.CREATE]({ email, password }) {
+			[USER.CREATE](email, password) {
 				return UserService.create({ email, password });
 			}
 			

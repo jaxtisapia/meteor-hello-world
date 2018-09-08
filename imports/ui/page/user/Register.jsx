@@ -12,8 +12,11 @@ export default class Register extends Component {
 		const { email, password } = data;
 		
 		UserResource.register(email, password, (error, result) => {
-			if ( ! error ) this.loginUser(result);
-			else return alert(err.error)
+			if ( ! error ) {
+				this.loginUser({ email, password });
+				Redirect.toPosts();
+			}
+			else return alert(error.reason)
 			
 		})
 	};

@@ -9,9 +9,8 @@ export default class PostAdd extends Component {
 	submit = (comment) => {
 		
 		const { postId } = this.props;
-		const userId = Meteor.userId();
 		
-		comment.userId = userId;
+		comment.userId = Meteor.userId();
 		comment.postId = postId;
 		
 		CommentResource.add(comment, (error) => {
