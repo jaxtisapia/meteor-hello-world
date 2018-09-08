@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { PaginationButton } from '/imports/ui/component';
+import { PaginationButton } from '/imports/ui/component/index';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 class Pagination extends Component {
 	

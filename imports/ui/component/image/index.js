@@ -1,0 +1,1 @@
+export CultIcon from './cultIcon'

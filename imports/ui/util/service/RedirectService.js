@@ -19,6 +19,8 @@ export default class RedirectService {
 	
 	static toPostsPage = (page) => route.go(`/posts?page=${page}&limit=5`);
 	
+	static toAddPost = () => route.go(`/posts/add`);
+	
 	/***
 	 * /posts/:postId/comments/:commentId/edit
 	 */

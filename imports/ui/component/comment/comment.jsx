@@ -1,4 +1,4 @@
-import { CommentResource, Redirect } from '/imports/ui/util/service';
+import { CommentResource, Redirect } from '/imports/ui/util/service/index';
 import React, { Component } from 'react';
 
 export default class Comment extends Component {

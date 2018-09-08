@@ -1,4 +1,4 @@
-import { PostResource, Redirect } from '/imports/ui/util/service';
+import { PostResource, Redirect } from '/imports/ui/util/service/index';
 import React, { Component } from 'react';
 
 export default class Post extends Component {

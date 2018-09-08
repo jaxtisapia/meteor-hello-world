@@ -1,9 +1,8 @@
-import { Post } from '/imports/ui/component';
-import Pagination from '/imports/ui/component/Pagination';
-import POST_CONSTANTS from '/imports/constant/post'
-import { withTracker } from 'meteor/react-meteor-data';
-import { PostResource, Redirect } from '/imports/ui/util/service';
 import { Posts as PostsCollection } from '/db';
+import POST_CONSTANTS from '/imports/constant/post'
+import { Pagination, Post } from '/imports/ui/component';
+import { PostResource, Redirect } from '/imports/ui/util/service';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import React, { Component } from 'react';
 

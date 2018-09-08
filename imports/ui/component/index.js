@@ -1,25 +1,10 @@
-import Button from './button';
-import Container from './Container';
-import CultIcon from './CultIcon';
-import CultAutoField from './CultAutoField';
-import TextLink from './TextLink';
-import Align from './Align';
-import Card from './Card';
-import Comment from './Comment';
-import Pagination from './Pagination';
-import PaginationButton from './PaginationButton';
-import Post from './Post';
-
-export {
-	Comment,
-	Container,
-	Align,
-	TextLink,
-	CultIcon,
-	CultAutoField,
-	Pagination,
-	PaginationButton,
-	Post,
-	Card,
-	Button
-}
+export { Button } from './button';
+export { Container } from './container';
+export { CultIcon } from './image';
+export { CultAutoField } from './input';
+export { TextLink } from './text';
+export { Align } from './align';
+export { Card } from './card';
+export { Comment } from './comment';
+export { Pagination, PaginationButton } from './pagination';
+export { Post } from './post';

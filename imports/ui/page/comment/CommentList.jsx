@@ -1,9 +1,9 @@
-import { Redirect } from '/imports/ui/util/service/';
-import React, { Component } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
-import COMMENT_CONSTANTS from '/imports/constant/comment'
-import { Comment } from '../../component';
 import { Comments as CommentsCollection } from '/db';
+import COMMENT_CONSTANTS from '/imports/constant/comment'
+import { Comment } from '/imports/ui/component';
+import { Redirect } from '/imports/ui/util/service/';
+import { withTracker } from 'meteor/react-meteor-data';
+import React, { Component } from 'react';
 
 class CommentList extends Component {
 	constructor() {

@@ -24,11 +24,11 @@ export default class LoggedIn extends Component {
 					<p>You are already logged in as { this.props.email } </p>
 					
 					<Align center>
-						<TextLink label={ 'View Posts' } clickAction={ Redirect.toPostsPage }/>
+						<TextLink label={ 'View Posts' } clickAction={ Redirect.toPosts }/>
 					</Align>
 					
 					<Align center>
-						<TextLink label={ 'Create Posts' } clickAction={ Redirect.toSignUp }/>
+						<TextLink label={ 'Create a Post' } clickAction={ Redirect.toAddPost }/>
 					</Align>
 				
 				</Align>
