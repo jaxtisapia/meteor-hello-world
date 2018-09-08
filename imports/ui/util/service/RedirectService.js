@@ -8,9 +8,14 @@ export default class RedirectService {
 	static toSignUp = () => route.go('/register');
 	
 	/***
+	 * /register
+	 */
+	static toLogin = () => route.go('/login');
+	
+	/***
 	 * /posts
 	 */
-	static toPosts = () => route.go('/posts');
+	static toPosts = () => RedirectService.toPostsPage(1);
 	
 	static toPostsPage = (page) => route.go(`/posts?page=${page}&limit=5`);
 	

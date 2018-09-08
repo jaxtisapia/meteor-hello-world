@@ -1,9 +1,8 @@
-import {
-	Button, Card, CultIcon, Align,
-	CultAutoField, Container, TextLink
-} from '/imports/ui/component';
-
+import { Align, Button, CultAutoField, TextLink } from '/imports/ui/component';
 import { Redirect, UserResource } from '/imports/ui/util/service';
+
+import { AuthenticationView } from '/imports/ui/view';
+import LoggedIn from '/imports/ui/view/LoggedInView';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
 import { AutoForm, ErrorsField } from 'uniforms-unstyled';
@@ -27,43 +26,42 @@ export default class Login extends Component {
 	};
 	
 	render() {
+		
+		const user = Meteor.user();
+		const isLoggedIn = (user !== null);
+		
+		let email = 'Unknown user';
+		if ( user && user.emails && user.emails.length > 0 ) email = user.emails[0].address;
+		
 		return (
-			<Container>
+			<AuthenticationView>
 				
-				<Card>
-					
-					<Align center>
-						<CultIcon/>
-					</Align>
-					
-					<div>
+				{
+					isLoggedIn
 						
-						<Align center column>
+						? <LoggedIn email={ email }/>
+						
+						: <div><AutoForm onSubmit={ this.handleLogin } schema={ LoginSchema }>
 							
-							<AutoForm onSubmit={ this.handleLogin } schema={ LoginSchema }>
-								
-								<CultAutoField name="email" placeholder="your.email@cult-o-coders.com"/>
-								<CultAutoField name="password" type="password" placeholder="Password"/>
-								
-								<ErrorsField/>
-								
-								<Align center>
-									<Button type="submit">Login</Button>
-								</Align>
+							<CultAutoField name="email" placeholder="your.email@cult-o-coders.com"/>
+							<CultAutoField name="password" type="password" placeholder="Password"/>
 							
-							</AutoForm>
-						
-						</Align>
-						
-						<Align center>
+							<ErrorsField/>
 							
-							<TextLink label={ 'Create a new account' } clickAction={ Redirect.toSignUp }/>
+							<Align center>
+								<Button type="submit">Login</Button>
+							</Align>
 						
-						</Align>
-					
-					</div>
-				</Card>
-			</Container>
+						</AutoForm>
+							
+							<Align center>
+								
+								<TextLink label={ 'Create a new account' } clickAction={ Redirect.toSignUp }/>
+							
+							</Align>
+						</div>
+				}
+			</AuthenticationView>
 		)
 	}
 	

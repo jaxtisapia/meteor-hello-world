@@ -1,8 +1,9 @@
-import { Button, Card } from '/imports/ui/component';
+import { Align, Button, CultAutoField, TextLink } from '/imports/ui/component';
 import { Redirect, UserResource } from '/imports/ui/util/service';
+import { AuthenticationView } from '/imports/ui/view';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
-import { AutoField, AutoForm, ErrorsField } from 'uniforms-unstyled';
+import { AutoForm, ErrorsField } from 'uniforms-unstyled';
 
 export default class Register extends Component {
 	
@@ -35,25 +36,27 @@ export default class Register extends Component {
 	
 	render() {
 		return (
-			<Card>
+			<AuthenticationView>
 				
-				<div className="authentication">
+				<AutoForm schema={ RegisterSchema } onSubmit={ this.onSubmit }>
 					
-					<AutoForm schema={ RegisterSchema } onSubmit={ this.onSubmit }>
-						
-						<ErrorsField/>
-						
-						<AutoField name="email" placeholder="Email"/>
-						<AutoField name="password" type="password" placeholder="Password *"/>
-						<AutoField name="confirm_password" type="password" placeholder="Confirm password"/>
-						
+					<CultAutoField name="email" placeholder="Email"/>
+					<CultAutoField name="password" type="password" placeholder="Password *"/>
+					<CultAutoField name="confirm_password" type="password" placeholder="Confirm password"/>
+					
+					<ErrorsField/>
+					
+					<Align center>
 						<Button type="submit">Create account</Button>
-					
-					</AutoForm>
+					</Align>
 				
-				</div>
+				</AutoForm>
+				
+				<Align center>
+					<TextLink label={ 'Login to your account' } clickAction={ Redirect.toLogin }/>
+				</Align>
 			
-			</Card>
+			</AuthenticationView>
 		
 		)
 	}

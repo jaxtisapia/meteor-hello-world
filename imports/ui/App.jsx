@@ -1,47 +1,20 @@
-import { UserResource } from '/imports/ui/util/service';
 import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 
 const App = ({ main, routeProps, user }) => {
 	
 	let loginMessage = null;
+	let email = 'Unknown user';
 	
-	function Logout() {
-		UserResource.logout();
-	}
-	
-	if ( user ) {
-		let email = 'Unknown user';
-		if ( user.emails && user.emails.length > 0 ) {
-			email = user.emails[0].address;
-		}
-		
-		loginMessage = <div>
-			<b>
-				<a href="/posts/add">Create new post</a> | { ' ' }
-				<a href="/posts">Posts list</a>
-			</b>
-			<br/><br/>
-			Welcome { email }! <a href="/" onClick={ Logout }>Logout</a>
-		</div>
-		
-	}
-	else {
-		
-		// loginMessage = <div>Log in <a href="/login">here</a> or <a href="/register">create new account</a></div>
-		
-	}
-	
+	if ( user && user.emails && user.emails.length > 0 ) email = user.emails[0].address;
 	
 	return (<div id="app">
-		
-			<div className="uk-flex uk-flex-center uk-flex-column">
 			
-			{ loginMessage }
+			<div className="uk-flex uk-flex-center uk-flex-column">
 				
 				{ React.createElement(main, routeProps, user) }
-				
-		</div>
+			
+			</div>
 		</div>
 	)
 };
