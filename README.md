@@ -2,6 +2,8 @@ Trying hands on Meteor JS.
 Trying to establish best practises by building a premier project. 
 Temporary Project, might be deleted soon.
 
+`App deployed at https://meteor-hello-world-qhkpwfdckd.now.sh/`
+
 ### Proposed Mockups
 
 Login Page
