@@ -1,0 +1,35 @@
+$blue: #0f7ae5;
+$green: #2ecc71;
+$cult: #e96900;
+
+.coc-button {
+  padding: 0.5em 2rem;
+  border: 0;
+  border-radius: 0.5em;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: rgba(242, 120, 84, 0.5) 0 5px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.coc-button-cult {
+  background-color: $cult;
+  &:hover {
+    box-shadow: $cult 0 7px 19px;
+  }
+}
+
+.coc-button-green {
+  background-color: $green;
+  &:hover {
+    box-shadow: $green 0 7px 19px;
+  }
+}
+
+.coc-button-blue {
+  background-color: $blue;
+  &:hover {
+    box-shadow: $blue 0 7px 19px;
+  }
+}

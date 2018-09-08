@@ -2,8 +2,6 @@ import { UserResource } from '/imports/ui/util/service';
 import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 
-import './styles/uikit/uikit.min.css'
-
 const App = ({ main, routeProps, user }) => {
 	
 	let loginMessage = null;
@@ -36,13 +34,13 @@ const App = ({ main, routeProps, user }) => {
 	
 	
 	return (<div id="app">
-			
-			<h1>Post - Commenter - Onboarding Test</h1>
+		
+			<div className="uk-flex uk-flex-center uk-flex-column">
 			
 			{ loginMessage }
 			
 			{ React.createElement(main, routeProps, user) }
-		
+		</div>
 		</div>
 	)
 };

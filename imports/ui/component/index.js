@@ -1,4 +1,6 @@
-import Button from './Button';
+import Button from './button';
+import VerticalAlign from './VerticalAlign';
+import CultIcon from './CultIcon';
 import Card from './Card';
 import Comment from './Comment';
 import Pagination from './Pagination';
@@ -7,6 +9,8 @@ import Post from './Post';
 
 export {
 	Comment,
+	VerticalAlign,
+	CultIcon,
 	Pagination,
 	PaginationButton,
 	Post,

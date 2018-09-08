@@ -3,6 +3,11 @@ import route from '/imports/routing/router';
 export default class RedirectService {
 	
 	/***
+	 * /register
+	 */
+	static toSignUp = () => route.go('/register');
+	
+	/***
 	 * /posts
 	 */
 	static toPosts = () => route.go('/posts');
