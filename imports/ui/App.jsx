@@ -28,7 +28,7 @@ const App = ({ main, routeProps, user }) => {
 	}
 	else {
 		
-		loginMessage = <div>Log in <a href="/login">here</a> or <a href="/register">create new account</a></div>
+		// loginMessage = <div>Log in <a href="/login">here</a> or <a href="/register">create new account</a></div>
 		
 	}
 	
@@ -38,8 +38,9 @@ const App = ({ main, routeProps, user }) => {
 			<div className="uk-flex uk-flex-center uk-flex-column">
 			
 			{ loginMessage }
-			
-			{ React.createElement(main, routeProps, user) }
+				
+				{ React.createElement(main, routeProps, user) }
+				
 		</div>
 		</div>
 	)

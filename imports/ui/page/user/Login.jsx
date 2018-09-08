@@ -1,8 +1,12 @@
-import { Button, Card, CultIcon } from '/imports/ui/component';
+import {
+	Button, Card, CultIcon, Align,
+	CultAutoField, Container, TextLink
+} from '/imports/ui/component';
+
 import { Redirect, UserResource } from '/imports/ui/util/service';
 import React, { Component } from 'react';
 import SimpleSchema from 'simpl-schema';
-import { AutoField, AutoForm, ErrorsField } from 'uniforms-unstyled';
+import { AutoForm, ErrorsField } from 'uniforms-unstyled';
 
 export default class Login extends Component {
 	constructor(props) {
@@ -24,40 +28,42 @@ export default class Login extends Component {
 	
 	render() {
 		return (
-			<div className={"uk-container uk-container-small"}>
-			<Card>
+			<Container>
 				
-				<div className={"uk-flex uk-flex-center"}>
-				<CultIcon/>
-				</div>
-				
-				<div className="authentication">
+				<Card>
 					
-					<AutoForm className={"uk-flex uk-flex-center uk-flex-column"} onSubmit={ this.handleLogin } schema={ LoginSchema }>
-						
-						<div className={"coc-input"}>
-						<AutoField className={"uk-flex uk-flex-column"} name="email" placeholder="Email"/>
-						</div>
-						
-						<div className={"coc-input"}>
-						<AutoField  className={"uk-flex uk-flex-column"} name="password" type="password" placeholder="Password"/>
-						</div>
-						
-						<ErrorsField/>
-						
-						<div className={"uk-align-center"}>
-							<Button type="submit">Login</Button>
-						</div>
-						
-					</AutoForm>
+					<Align center>
+						<CultIcon/>
+					</Align>
 					
-					<div className={"uk-flex uk-flex-center"}>
-						<p style={{ cursor:'pointer' }} onClick={() => Redirect.toSignUp()}>Create a new account</p>
+					<div>
+						
+						<Align center column>
+							
+							<AutoForm onSubmit={ this.handleLogin } schema={ LoginSchema }>
+								
+								<CultAutoField name="email" placeholder="your.email@cult-o-coders.com"/>
+								<CultAutoField name="password" type="password" placeholder="Password"/>
+								
+								<ErrorsField/>
+								
+								<Align center>
+									<Button type="submit">Login</Button>
+								</Align>
+							
+							</AutoForm>
+						
+						</Align>
+						
+						<Align center>
+							
+							<TextLink label={ 'Create a new account' } clickAction={ Redirect.toSignUp }/>
+						
+						</Align>
+					
 					</div>
-				
-				</div>
-			</Card>
-			</div>
+				</Card>
+			</Container>
 		)
 	}
 	

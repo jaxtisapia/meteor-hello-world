@@ -1,6 +1,9 @@
 import Button from './button';
-import VerticalAlign from './VerticalAlign';
+import Container from './Container';
 import CultIcon from './CultIcon';
+import CultAutoField from './CultAutoField';
+import TextLink from './TextLink';
+import Align from './Align';
 import Card from './Card';
 import Comment from './Comment';
 import Pagination from './Pagination';
@@ -9,8 +12,11 @@ import Post from './Post';
 
 export {
 	Comment,
-	VerticalAlign,
+	Container,
+	Align,
+	TextLink,
 	CultIcon,
+	CultAutoField,
 	Pagination,
 	PaginationButton,
 	Post,
