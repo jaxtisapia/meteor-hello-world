@@ -8,3 +8,9 @@ type Comment @mongo(name: "comments") {
 type Query{
     comments: [Comment]
 }
+
+type Mutation {
+    createComment(comment:Comment):String
+    updateComment(commentId:String, updateDocument: Comment):String
+    deleteComment(commentId:String):String
+}
