@@ -4,7 +4,7 @@ import { initialize } from 'meteor/cultofcoders:apollo';
 import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 
-import { ApolloProvider, Query } from 'react-apollo';
+import { ApolloProvider } from 'react-apollo';
 
 const { client } = initialize();
 
@@ -18,16 +18,6 @@ const App = ({ main, routeProps, user }) => {
 		<ApolloProvider client={ client }>
 			<div id="app">
 				<div className="uk-flex uk-flex-center uk-flex-column">
-					
-					<Query query={ QUERY }>
-						{ ({ loading, error, data }) => {
-							if ( loading ) return <p>Loading...</p>;
-							if ( error ) return <p>Error :(</p>;
-							
-							return <p>{ data.posts[1].title }</p>
-						} }
-					</Query>
-					
 					{ React.createElement(main, routeProps, user) }
 				</div>
 			</div>
