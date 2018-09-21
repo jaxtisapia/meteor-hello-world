@@ -7,6 +7,7 @@ type Comment @mongo(name: "comments") {
 
 type Query{
     comments(postId:String): [Comment]
+    comment(_id:String): Comment
 }
 
 type PublicComment {
@@ -15,7 +16,7 @@ type PublicComment {
 }
 
 type Mutation {
-    createComment(title:String, description: String):String
+    createComment(title:String, description: String, postId:String):String
     updateComment(commentId:String):String
     deleteComment(commentId:String):String
 }

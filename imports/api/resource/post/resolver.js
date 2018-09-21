@@ -13,8 +13,8 @@ export default {
 		
 		createPost(_, post, { userId }) {
 			Security.isLoggedIn(userId);
-			post.userId = this.userId;
 			
+			post.userId = userId;
 			return PostService.create(post);
 		},
 		

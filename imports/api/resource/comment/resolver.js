@@ -5,8 +5,11 @@ import Security from '/imports/api/security';
 export default {
 	Query : {
 		comments(_, args, { db }, ast) {
-			console.log(args);
 			return db.comments.astToQuery(ast, { $filters : args }).fetch();
+		},
+		
+		comment(_, args, { db }, ast) {
+			return db.comments.astToQuery(ast, { $filters : args }).fetchOne();
 		}
 	},
 	
@@ -15,6 +18,8 @@ export default {
 			Security.isLoggedIn(userId);
 			
 			const { postId } = comment;
+			comment.userId = userId;
+			
 			return CommentService.create(postId, comment);
 		},
 		
