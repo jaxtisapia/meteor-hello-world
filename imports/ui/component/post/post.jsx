@@ -15,6 +15,7 @@ export default class Post extends Component {
 	render() {
 		
 		const { post } = this.props;
+		const commentCount = (! post.comments) ? 0 : post.comments.length;
 		
 		const userId = Meteor.userId();
 		const isOwnerOfPost = (post.userId === userId);
@@ -31,7 +32,7 @@ export default class Post extends Component {
 					: null
 				}
 				
-				<button onClick={ () => Redirect.toComments(post._id) }> View Comments</button>
+				<button onClick={ () => Redirect.toComments(post._id) }> View Comments ( { commentCount } )</button>
 			
 			</div>
 		)
