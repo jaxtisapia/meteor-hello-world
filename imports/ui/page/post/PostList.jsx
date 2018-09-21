@@ -1,15 +1,10 @@
-import { Post } from '/imports/ui/component';
+import { PostQueries } from '/imports/constant/queries'
 
+import { Post } from '/imports/ui/component';
+import { Redirect } from '/imports/ui/util/service/';
 import gql from 'graphql-tag';
-import { withTracker } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
-
-const GET_POST_QUERY = gql`query {
-  posts { _id description title
-    comments { title }
-  }
-}`;
 
 class PostList extends Component {
 	constructor() {
@@ -18,17 +13,27 @@ class PostList extends Component {
 	
 	render() {
 		
-		return (
-			<Query query={ GET_POST_QUERY }>
-				{ ({ loading, error, data }) => {
-					if ( loading ) return <p>Loading...</p>;
-					if ( error ) return <p>Error :(</p>;
-					
-					return data.posts.map(post => <Post key={ post._id } post={ post }/>)
-				}
-				}
-			</Query>
+		const { generalGet } = PostQueries;
+		const query = gql(generalGet);
 		
+		return (
+			<div>
+				
+				<button onClick={ () => Redirect.toAddPost() }>Create a new Post</button>
+				<button onClick={ () => Redirect.toLogin() }>Go to Login Screen</button>
+				
+				
+				<Query query={ query }>
+					
+					{ ({ loading, error, data }) => {
+						if ( loading ) return <p>Loading...</p>;
+						if ( error ) return <p>Error :(</p>;
+						
+						return data.posts.map(post => <Post key={ post._id } post={ post }/>)
+					} }
+				
+				</Query>
+			</div>
 		)
 	}
 }

@@ -1,43 +1,53 @@
-import { Comments as CommentsCollection } from '/db';
-import COMMENT_CONSTANTS from '/imports/constant/comment'
+import { CommentQueries } from '/imports/constant/queries'
+
 import { Comment } from '/imports/ui/component';
 import { Redirect } from '/imports/ui/util/service/';
+import gql from 'graphql-tag';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
+import { Query } from 'react-apollo';
+
 
 class CommentList extends Component {
 	constructor() {
 		super();
-		this.state = { comments : null };
+		this.state = { postId : null }
+	}
+	
+	
+	componentDidMount() {
+		this.setState({ postId : this.props.postId });
 	}
 	
 	render() {
-		const { postId, comments } = this.props;
 		
-		if ( ! comments ) return <div>Loading....</div>;
+		const { postId } = this.state;
 		
-		else return (
-			<div className="comment">
-				{
-					(comments.length === 0)
+		const { generalComments } = CommentQueries;
+		const query = gql(generalComments);
+		
+		return (
+			<div>
+				
+				<Query query={ query } variables={ { postId } }>
+					
+					{ ({ loading, error, data }) => {
+						if ( loading ) return <p>Loading...</p>;
+						if ( error ) return <p>Error :(</p>;
 						
-						? <div>No Comments for this Post</div>
-						: comments.map((comment) => <Comment key={ comment._id } comment={ comment } postId={ postId }/>
-						)
-				}
+						const { comments } = data;
+						
+						if ( comments.length === 0 ) return <div>No Comments for this Post</div>;
+						else return comments.map((comment) => <Comment key={ comment._id } comment={ comment }/>)
+					} }
+				
+				</Query>
+				
 				<button onClick={ () => Redirect.toAddComment(postId) }>Create a new comment</button>
-			</div>
-		)
+			
+			</div>)
+		
 	}
 }
 
-export default withTracker(props => {
-	const handle = Meteor.subscribe(COMMENT_CONSTANTS.FIND);
-	const postId = props.postId;
-	
-	return {
-		loading : ! handle.ready(),
-		comments : CommentsCollection.find({ postId }).fetch(),
-		... props
-	};
-})(CommentList);
+export default CommentList;

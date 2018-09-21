@@ -9,7 +9,10 @@ export default class Comment extends Component {
 	
 	render() {
 		
-		const { comment, postId } = this.props;
+		const { comment } = this.props;
+		const { post } = comment;
+		
+		const postId = post._id;
 		
 		return (<div key={ comment._id }>
 			<p>Comment id: { comment._id } </p>
