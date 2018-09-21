@@ -8,7 +8,9 @@ import { ApolloProvider, Query } from 'react-apollo';
 
 const { client } = initialize();
 
-const QUERY = gql`query { sayMasa }`;
+const QUERY = gql`query { posts {
+																		title
+																}}`;
 
 const App = ({ main, routeProps, user }) => {
 	
@@ -22,7 +24,7 @@ const App = ({ main, routeProps, user }) => {
 							if ( loading ) return <p>Loading...</p>;
 							if ( error ) return <p>Error :(</p>;
 							
-							return <p>{ data.sayMasa }</p>
+							return <p>{ data.posts[1].title }</p>
 						} }
 					</Query>
 					
