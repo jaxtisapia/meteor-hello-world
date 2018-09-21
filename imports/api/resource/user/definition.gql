@@ -1,0 +1,9 @@
+type User @mongo(name: "users") {
+  _id: ID!
+  createdAt: Date
+  posts: [Post] @link(to: "user")
+}
+
+type Query{
+    users: [User]
+}

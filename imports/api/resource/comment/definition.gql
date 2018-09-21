@@ -1,0 +1,10 @@
+type Comment @mongo(name: "comments") {
+	_id: ID!
+		title: String
+		description: String
+		post: Post @link(field: "postId")
+}
+
+type Query{
+    comments: [Comment]
+}
