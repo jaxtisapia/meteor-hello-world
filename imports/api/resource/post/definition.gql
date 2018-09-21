@@ -10,8 +10,13 @@ type Query{
     posts: [Post]
 }
 
+type PublicPost {
+    title: String
+    description: String
+}
+
 type Mutation {
     createPost(title:String, description: String):String
-    updatePost(postId:String, updateDocument: Post):String
+    updatePost(postId:String, ):String
     deletePost(postId:String):String
 }

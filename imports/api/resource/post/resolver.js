@@ -4,7 +4,8 @@ import Security from '/imports/api/security';
 export default {
 	Query : {
 		posts(_, args, { db }, ast) {
-			return db.posts.astToQuery(ast).fetch();
+			console.log(args);
+			return db.posts.astToQuery(ast, args).fetch();
 		}
 	},
 	
