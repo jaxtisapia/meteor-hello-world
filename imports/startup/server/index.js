@@ -1,5 +1,6 @@
 import '/imports/api/methods';
 import '/imports/api/publications';
+import { definitions as DomainDef, resolvers as DomainResolver } from '/imports/apollo/domain'
 
 import { definitions as UserDef, resolvers as UserResolver } from '/imports/apollo/user'
 import { load } from 'graphql-load';
@@ -11,8 +12,8 @@ const localQuery = {
 };
 
 load({
-	     typeDefs : [`type Query { sayHello: String }`, `type Query { sayMasa: String }`, UserDef],
-	     resolvers : [localQuery, UserResolver],
+	     typeDefs : [`type Query { sayHello: String }`, `type Query { sayMasa: String }`, UserDef, DomainDef],
+	     resolvers : [localQuery, UserResolver, DomainResolver],
      });
 
 initialize();
