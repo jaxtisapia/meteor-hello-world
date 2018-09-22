@@ -6,12 +6,7 @@ import { Mutation } from 'react-apollo';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField } from 'uniforms-unstyled';
 
-
 export default class PostAdd extends Component {
-	
-	submit = (comment) => {
-		console.log(comment)
-	};
 	
 	constructor() {
 		super();
@@ -26,7 +21,6 @@ export default class PostAdd extends Component {
 			<div className="post">
 				
 				<Mutation mutation={ mutation }
-				          variables={ { description : 'woman', title : 'mirror' } }
 				          onError={ () => {alert('an error occurred')} }
 				          onCompleted={ () => {
 					          alert('comment Added');

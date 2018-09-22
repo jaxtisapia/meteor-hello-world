@@ -1,5 +1,4 @@
 import { CommentQueries } from '/imports/constant/queries'
-
 import { Comment } from '/imports/ui/component';
 import { Redirect } from '/imports/ui/util/service/';
 import gql from 'graphql-tag';
