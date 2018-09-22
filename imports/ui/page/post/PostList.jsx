@@ -19,9 +19,10 @@ class PostList extends Component {
 		return (
 			<div>
 				
-				<button onClick={ () => Redirect.toAddPost() }>Create a new Post</button>
-				<button onClick={ () => Redirect.toLogin() }>Go to Login Screen</button>
-				
+				<div className={ 'uk-margin uk-margin-large' }>
+					<button onClick={ () => Redirect.toAddPost() }>Create a new Post</button>
+					<button onClick={ () => Redirect.toLogin() }>Go to Login Screen</button>
+				</div>
 				
 				<Query query={ query }>
 					
