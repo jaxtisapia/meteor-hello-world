@@ -23,9 +23,9 @@ export default {
 			return CommentService.create(postId, comment);
 		},
 		
-		updateComment(_, { commentId, updateDocument }, { userId }) {
+		updateComment(_, { commentId, title, description }, { userId }) {
 			Security.isLoggedIn(userId);
-			return CommentService.updateByCommentId(userId, commentId, updateDocument);
+			return CommentService.updateByCommentId(userId, commentId, { title, description });
 		},
 		
 		deleteComment(_, commentId, { userId }) {

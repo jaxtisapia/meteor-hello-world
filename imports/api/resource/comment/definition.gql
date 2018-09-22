@@ -17,6 +17,6 @@ type PublicComment {
 
 type Mutation {
     createComment(title:String, description: String, postId:String):String
-    updateComment(commentId:String):String
+    updateComment(commentId:String, title:String, description: String):String
     deleteComment(commentId:String):String
 }

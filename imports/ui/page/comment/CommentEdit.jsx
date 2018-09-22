@@ -1,5 +1,8 @@
-import { CommentResource, Redirect } from '/imports/ui/util/service';
+import { CommentQueries } from '/imports/constant/queries'
+import { Redirect } from '/imports/ui/util/service';
+import gql from 'graphql-tag';
 import React, { Component } from 'react';
+import { Mutation, Query } from 'react-apollo';
 import SimpleSchema from 'simpl-schema';
 import { AutoField, AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-unstyled';
 
@@ -7,62 +10,61 @@ export default class CommentEdit extends Component {
 	
 	constructor() {
 		super();
-		this.state = { loading : true, comment : { title : '', description : '' } };
-		
-		this.handleUpdateComment = this.handleUpdateComment.bind(this);
-	}
-	
-	getCommentDetailsById(commentId) {
-		
-		CommentResource.getOne(commentId, (error, result) => {
-			if ( result ) this.setState({ loading : false, comment : result });
-		});
-		
-	}
-	
-	handleUpdateComment(updateDocument) {
-		
-		const { title, description } = updateDocument;
-		const { commentId, postId } = this.props;
-		
-		CommentResource.update(commentId, { title, description }, (error, result) => {
-			
-			if ( ! error ) Redirect.toComments(postId);
-			else alert('An error has happened: ' + error);
-			
-		});
-		
-	}
-	
-	componentDidMount() {
-		this.getCommentDetailsById(this.props.commentId);
 	}
 	
 	render() {
 		const { postId, commentId } = this.props;
 		
-		if ( this.state.loading ) { return <div>Loading editing comment..</div> }
+		const { getComment, updateComment } = CommentQueries;
+		const query = gql(getComment);
+		const mutation = gql(updateComment);
 		
-		else return <div>
-			<AutoForm model={ this.state.comment } schema={ Schema } onSubmit={ this.handleUpdateComment }>
-				
-				<h2>Edit comment with id { this.props.commentId }</h2>
-				
-				<AutoField name="title"/>
-				
-				<LongTextField name="description"/>
-				
-				<ErrorsField/>
-				
-				<div>
-					<SubmitField value="Update Comment"/>
-				</div>
+		return (
 			
-			</AutoForm>
-		</div>
-		
+			<Query query={ query } variables={ { commentId } }>
+				
+				{ ({ loading, error, data }) => {
+					
+					const { comment } = data;
+					
+					if ( loading ) return <p>Loading editing comment..</p>;
+					if ( error ) return <p>Error :(</p>;
+					
+					else return (
+						
+						<Mutation mutation={ mutation }
+						          onError={ () => {alert('an error occurred')} }
+						          onCompleted={ () => {
+							          alert('comment Edited');
+							          Redirect.toComments(postId)
+						          } }>
+							
+							{ updateComment => (
+								
+								<AutoForm model={ comment }
+								          schema={ Schema }
+								          onSubmit={ document => updateComment({ variables : { ... document, commentId } }) }>
+									
+									<h2>Edit comment with id { commentId }</h2>
+									
+									<AutoField name="title"/>
+									
+									<LongTextField name="description"/>
+									
+									<ErrorsField/>
+									
+									<div>
+										<SubmitField value="Update Comment"/>
+									</div>
+								
+								</AutoForm>
+							) }
+						
+						</Mutation>
+					)
+				} }
+			</Query>)
 	}
-	
 }
 
 const Schema = new SimpleSchema(
