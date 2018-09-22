@@ -51,15 +51,20 @@ Comments
 - Comments are now Reactive
 - Added pagination for post list
 - Added Grapher to establish relationships
+- Use GraphQL(Apollo) ***NEW***
 
 ## On hold
 - Try easify on the project ( Buggy )
 - Try React Molecule: on the project ( Buggy )
 
 ### Todos
-- Style all pages with material design/Custom Library
+- Research better ways of organising graphql queries ***NEW***
 
-- Use GraphQL
+- gql( allQueries ) before exporting them for use by UI (Makes code less verbose on UI) ***NEW***
+
+- Get a cleaner approach to adding <Mutation/> and <Query/>. Front end is too clumsy with such inclusions ***NEW***
+
+- Style all pages with material design/Custom Library
 
 - Clean organisation of styling elements
 
