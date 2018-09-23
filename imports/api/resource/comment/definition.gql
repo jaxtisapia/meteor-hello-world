@@ -10,11 +10,6 @@ type Query{
     comment(_id:String): Comment
 }
 
-type PublicComment {
-    title: String
-    description: String
-}
-
 type Mutation {
     createComment(title:String, description: String, postId:String):String
     updateComment(commentId:String, title:String, description: String):String
