@@ -27,7 +27,6 @@ export default class CommentListQuery extends Component {
 					const { comments } = data;
 					
 					if ( comments.length === 0 ) return EmptyDataView;
-					// else return comments.map((comment) => <ValidView key={ comment._id } comment={ comment }/>)
 					else return comments.map(comment => <Comment key={ comment._id } comment={ comment }/>)
 				} }
 			
