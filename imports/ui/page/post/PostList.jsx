@@ -1,10 +1,10 @@
-import { PostQueries } from '/imports/constant/queries'
-
-import { Post } from '/imports/ui/component';
 import { Redirect } from '/imports/ui/util/service/';
-import gql from 'graphql-tag';
+import { PostListQuery } from '/imports/ui/view';
 import React, { Component } from 'react';
-import { Query } from 'react-apollo';
+
+const LoadingView = <p>Loading...</p>;
+const ErrorView = <p>Error :(</p>;
+const EmptyDataView = <p>No Post found</p>;
 
 class PostList extends Component {
 	constructor() {
@@ -13,8 +13,11 @@ class PostList extends Component {
 	
 	render() {
 		
-		const { generalGet } = PostQueries;
-		const query = gql(generalGet);
+		const postListQueryProps = {
+			loadingView : LoadingView,
+			errorView : ErrorView,
+			emptyDataView : EmptyDataView
+		};
 		
 		return (
 			<div>
@@ -24,16 +27,8 @@ class PostList extends Component {
 					<button onClick={ () => Redirect.toLogin() }>Go to Login Screen</button>
 				</div>
 				
-				<Query query={ query }>
-					
-					{ ({ loading, error, data }) => {
-						if ( loading ) return <p>Loading...</p>;
-						if ( error ) return <p>Error :(</p>;
-						
-						return data.posts.map(post => <Post key={ post._id } post={ post }/>)
-					} }
+				<PostListQuery { ... postListQueryProps }/>
 				
-				</Query>
 			</div>
 		)
 	}
