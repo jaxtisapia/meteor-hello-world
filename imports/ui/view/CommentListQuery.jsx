@@ -1,5 +1,5 @@
 import { CommentQueries } from '/imports/constant/queries'
-import Comment from '/imports/ui/component/comment/comment';
+import { Comment } from '/imports/ui/component';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';

@@ -1,5 +1,5 @@
 import { Redirect } from '/imports/ui/util/service/';
-import CommentListQuery from '/imports/ui/view/CommentListQuery';
+import { CommentListQuery } from '/imports/ui/view';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
 
