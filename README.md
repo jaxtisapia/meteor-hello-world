@@ -64,6 +64,9 @@ Comments
 
 - Get a cleaner approach to adding <Mutation/> and <Query/>. Front end is too clumsy with such inclusions ***NEW***
 
+- Instead of always calling `Security.isLoggedIn(this.userId)` in Resolvers, pass all authed routes through a middleware.
+Otherwise, Security refactoring, especially adding more security features, would be difficult ***NEW***
+
 - Style all pages with material design/Custom Library
 
 - Clean organisation of styling elements
