@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 
-export default class QueryCommentList extends Component {
+export default class CommentListQuery extends Component {
 	
 	constructor(props) {
 		super(props);

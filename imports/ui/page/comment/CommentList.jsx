@@ -1,5 +1,5 @@
 import { Redirect } from '/imports/ui/util/service/';
-import QueryCommentList from '/imports/ui/view/QueryCommentList';
+import CommentListQuery from '/imports/ui/view/CommentListQuery';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
 
@@ -29,7 +29,7 @@ class CommentList extends Component {
 				 instead of explicitly using <Comment> within the QueryCommentList class
 				 */ }
 				
-				<QueryCommentList postId={ postId }
+				<CommentListQuery postId={ postId }
 				                  loadingView={ LoadingView }
 				                  errorView={ ErrorView }
 				                  emptyDataView={ EmptyDataView }/>
