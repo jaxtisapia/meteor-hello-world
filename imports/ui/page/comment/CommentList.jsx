@@ -1,48 +1,42 @@
-import { CommentQueries } from '/imports/constant/queries'
-import { Comment } from '/imports/ui/component';
 import { Redirect } from '/imports/ui/util/service/';
-import gql from 'graphql-tag';
+import QueryCommentList from '/imports/ui/view/QueryCommentList';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
-import { Query } from 'react-apollo';
 
 
 class CommentList extends Component {
+	handleCreateCommentRedirection = () => Redirect.toAddComment(this.props.postId);
+	
 	constructor() {
 		super();
-		this.state = { postId : null }
-	}
-	
-	
-	componentDidMount() {
-		this.setState({ postId : this.props.postId });
+		
+		this.handleCreateCommentRedirection = this.handleCreateCommentRedirection.bind(this);
 	}
 	
 	render() {
 		
-		const { postId } = this.state;
+		const { postId } = this.props;
 		
-		const { generalComments } = CommentQueries;
-		const query = gql(generalComments);
+		const LoadingView = <p>Loading...</p>;
+		const ErrorView = <p>Error :(</p>;
+		const EmptyDataView = <p>No Comments for this Post</p>;
 		
 		return (
 			<div>
 				
-				<Query query={ query } variables={ { postId } }>
-					
-					{ ({ loading, error, data }) => {
-						if ( loading ) return <p>Loading...</p>;
-						if ( error ) return <p>Error :(</p>;
-						
-						const { comments } = data;
-						
-						if ( comments.length === 0 ) return <div>No Comments for this Post</div>;
-						else return comments.map((comment) => <Comment key={ comment._id } comment={ comment }/>)
-					} }
+				{ /*
+				 TODO: pass for instance, <CommentList> item to QueryCommentList,
+				 instead of explicitly using <Comment> within the QueryCommentList class
+				 */ }
 				
-				</Query>
+				<QueryCommentList postId={ postId }
+				                  loadingView={ LoadingView }
+				                  errorView={ ErrorView }
+				                  emptyDataView={ EmptyDataView }/>
 				
-				<button onClick={ () => Redirect.toAddComment(postId) }>Create a new comment</button>
+				<button onClick={ this.handleCreateCommentRedirection }>
+					Create a new comment
+				</button>
 			
 			</div>)
 		
