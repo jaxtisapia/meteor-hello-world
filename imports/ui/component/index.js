@@ -1,4 +1,4 @@
-export { Button } from './button';
+export { Button, DeleteCommentButton } from './button';
 export { Container } from './container';
 export { CultIcon } from './image';
 export { CultAutoField } from './input';
