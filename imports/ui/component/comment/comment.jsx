@@ -15,8 +15,8 @@ export default class Comment extends Component {
 		const { comment } = this.props;
 		const { post } = comment;
 		
-		const postId = post._id;
-		const commentId = comment._id;
+		const { _id : postId } = post;
+		const { _id : commentId } = comment;
 		
 		
 		return (<div key={ comment._id }>
