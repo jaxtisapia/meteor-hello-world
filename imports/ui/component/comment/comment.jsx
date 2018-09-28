@@ -1,8 +1,8 @@
-import { CommentQueries } from '/imports/constant/queries'
-import { CommentResource, Redirect } from '/imports/ui/util/service/index';
-import gql from 'graphql-tag';
+import { DeleteCommentButton } from '/imports/ui/component'
+import { Redirect } from '/imports/ui/util/service';
+
 import React, { Component } from 'react';
-import { Mutation } from 'react-apollo';
+
 
 export default class Comment extends Component {
 	
@@ -18,9 +18,6 @@ export default class Comment extends Component {
 		const postId = post._id;
 		const commentId = comment._id;
 		
-		const { deleteComment } = CommentQueries;
-		const deleteCommentMutation = gql(deleteComment);
-		
 		
 		return (<div key={ comment._id }>
 				<p>Comment id: { comment._id } </p>
@@ -28,30 +25,9 @@ export default class Comment extends Component {
 				<button onClick={ () => Redirect.toEditComment(postId, comment._id) }> Edit comment
 				</button>
 				
-				<Mutation mutation={ deleteCommentMutation }
-				          onError={ () => {alert('an error occurred')} }
-				          onCompleted={ () => {
-					          alert('comment Deleted');
-					          Redirect.toPosts()
-				          } }>
-					{ deleteComment =>
-						<button onClick={ () => deleteComment({ variables : { commentId } }) }> Delete comment</button>
-					}
-				
-				</Mutation>
+				<DeleteCommentButton commentId={ commentId }/>
 			
 			</div>
 		)
-	}
-	
-	handleDeleteComment(commentId) {
-		
-		CommentResource.deleteOne(commentId, (error, result) => {
-			
-			if ( error ) return alert(error.error);
-			alert('Comment deleted!')
-			
-		});
-		
 	}
 }
