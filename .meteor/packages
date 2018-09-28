@@ -25,3 +25,5 @@ react-meteor-data
 fourseven:scss
 aldeed:collection2
 cultofcoders:grapher
+swydo:graphql
+cultofcoders:apollo
