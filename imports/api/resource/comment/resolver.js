@@ -28,7 +28,7 @@ export default {
 			return CommentService.updateByCommentId(userId, commentId, { title, description });
 		},
 		
-		deleteComment(_, commentId, { userId }) {
+		deleteComment(_, { commentId }, { userId }) {
 			Security.isLoggedIn(userId);
 			return CommentService.deleteByCommentId(userId, commentId);
 		}

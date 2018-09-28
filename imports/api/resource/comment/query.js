@@ -14,6 +14,9 @@ module.exports = {
 	
 	
 	updateComment : `mutation Comment( $commentId:String, $title:String, $description: String)
-													{ updateComment( commentId: $commentId, title: $title, description: $description ) }`
+													{ updateComment( commentId: $commentId, title: $title, description: $description ) }`,
+	
+	deleteComment : `mutation Comment($commentId: String)
+													{ deleteComment(commentId: $commentId)}`
 	
 };
