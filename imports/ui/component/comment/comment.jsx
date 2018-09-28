@@ -16,13 +16,16 @@ export default class Comment extends Component {
 		const { post } = comment;
 		
 		const { _id : postId } = post;
-		const { _id : commentId } = comment;
+		const { _id : commentId, title : commentTitle, description : commentDescription } = comment;
 		
 		
-		return (<div key={ comment._id }>
-				<p>Comment id: { comment._id } </p>
-				<p>Comment title: { comment.title }, Comment Description: { comment.description } </p>
-				<button onClick={ () => Redirect.toEditComment(postId, comment._id) }> Edit comment
+		return (<div key={ commentId }>
+				
+				<p>Comment id: { commentId } </p>
+				<p>Comment title: { commentTitle }, Comment Description: { commentDescription } </p>
+				
+				<button onClick={ () => Redirect.toEditComment(postId, commentId) }>
+					Edit comment
 				</button>
 				
 				<DeleteCommentButton commentId={ commentId }/>
